@@ -1,0 +1,501 @@
+PATIENT_ID,FIRST_NAME,LAST_NAME,BIRTHDATE,GENDER,RACE,CITY,COUNTY,STATE,INCOME,PAYER,PRIMARY_CONDITION
+P0001,Hannah,Lopez,1955-01-10,F,white,Boston,Suffolk,MA,41000,Aetna,osteoarthritis
+P0002,Fatima,Johnson,1937-09-03,F,white,Pittsfield,Berkshire,MA,74000,Blue Cross,type 2 diabetes
+P0003,Fatima,Lopez,1975-04-20,F,black,New Bedford,Bristol,MA,16000,Aetna,asthma
+P0004,Ethan,Brown,1954-04-26,M,hispanic,Brockton,Plymouth,MA,101000,Medicare,depression
+P0005,Nora,Ross,1958-09-24,F,asian,Brockton,Plymouth,MA,132000,Blue Cross,depression
+P0006,Priya,Ross,2014-06-09,F,hispanic,New Bedford,Bristol,MA,162000,Medicare,hypertension
+P0007,Priya,Garcia,2011-09-26,F,white,Cambridge,Middlesex,MA,40000,Medicaid,hyperlipidemia
+P0008,Mateo,Rivera,1953-10-18,M,black,Springfield,Hampden,MA,194000,No Insurance,none
+P0009,Olivia,Price,2000-05-31,F,white,Pittsfield,Berkshire,MA,133000,Medicaid,none
+P0010,Linda,Lopez,2008-09-22,F,white,Brockton,Plymouth,MA,95000,Medicaid,hypertension
+P0011,Emma,Kim,1993-10-20,F,white,Pittsfield,Berkshire,MA,179000,Blue Cross,heart failure
+P0012,Leah,Price,1958-07-28,F,asian,Cambridge,Middlesex,MA,124000,UnitedHealthcare,depression
+P0013,Daniel,Hughes,1979-04-11,M,white,Cambridge,Middlesex,MA,27000,UnitedHealthcare,asthma
+P0014,Ivy,Garcia,1969-07-09,F,white,Quincy,Norfolk,MA,134000,Blue Cross,osteoarthritis
+P0015,Leah,Walker,2003-12-15,F,black,Worcester,Worcester,MA,43000,Medicaid,asthma
+P0016,Ethan,Hughes,2003-05-11,M,white,Boston,Suffolk,MA,42000,UnitedHealthcare,heart failure
+P0017,Nora,Patel,1983-05-23,F,hispanic,Springfield,Hampden,MA,150000,UnitedHealthcare,obesity
+P0018,James,Nguyen,2018-05-09,M,white,Lynn,Essex,MA,93000,Medicare,COPD
+P0019,Ava,Garcia,2003-03-28,F,white,Worcester,Worcester,MA,47000,Medicare,hyperlipidemia
+P0020,Sofia,Ross,1972-12-17,F,other,Lowell,Middlesex,MA,153000,Aetna,none
+P0021,Elena,Rivera,1974-04-21,F,hispanic,Lowell,Middlesex,MA,130000,Medicare,COPD
+P0022,Maria,Ward,1984-09-10,F,white,Brockton,Plymouth,MA,71000,Medicare,none
+P0023,Susan,Johnson,2012-02-14,F,white,Cambridge,Middlesex,MA,146000,Medicare,none
+P0024,Isaac,Brown,1999-11-23,M,hispanic,Cambridge,Middlesex,MA,161000,Blue Cross,COPD
+P0025,Liam,Nguyen,1943-09-12,M,black,Quincy,Norfolk,MA,105000,Medicaid,hyperlipidemia
+P0026,Linda,Okafor,2000-05-01,F,white,Worcester,Worcester,MA,42000,Medicare,COPD
+P0027,Henry,Patel,1959-12-28,M,white,Springfield,Hampden,MA,34000,Blue Cross,osteoarthritis
+P0028,Leah,Smith,1943-05-15,F,hispanic,Boston,Suffolk,MA,75000,Medicare,hyperlipidemia
+P0029,Samuel,Johnson,1949-10-08,M,white,Cambridge,Middlesex,MA,114000,Medicaid,none
+P0030,Henry,Price,1994-05-19,M,asian,Lowell,Middlesex,MA,54000,Medicare,COPD
+P0031,Leah,Johnson,2002-02-07,F,white,Pittsfield,Berkshire,MA,27000,Blue Cross,osteoarthritis
+P0032,Sofia,Garcia,2011-05-18,F,white,Boston,Suffolk,MA,167000,Medicare,COPD
+P0033,Victor,Lopez,1986-12-09,M,black,Worcester,Worcester,MA,173000,Medicare,none
+P0034,Liam,Murphy,1956-05-31,M,white,Lowell,Middlesex,MA,48000,Aetna,heart failure
+P0035,Carlos,Smith,1976-02-12,M,black,Brockton,Plymouth,MA,159000,No Insurance,hypertension
+P0036,Hannah,Brown,2018-09-23,F,white,New Bedford,Bristol,MA,32000,UnitedHealthcare,chronic kidney disease
+P0037,Jamal,Price,1998-02-12,M,white,Springfield,Hampden,MA,182000,Blue Cross,none
+P0038,Daniel,Walker,1945-05-10,M,hispanic,Worcester,Worcester,MA,156000,Medicare,heart failure
+P0039,Grace,Walker,1980-05-05,F,white,Brockton,Plymouth,MA,28000,Medicare,depression
+P0040,James,Murphy,2004-03-07,M,white,Boston,Suffolk,MA,82000,Medicare,hyperlipidemia
+P0041,James,Nguyen,1941-10-01,M,hispanic,New Bedford,Bristol,MA,191000,UnitedHealthcare,osteoarthritis
+P0042,Ruth,Price,1948-04-14,F,white,Brockton,Plymouth,MA,25000,Medicaid,none
+P0043,Grace,Lopez,1994-11-01,F,white,Brockton,Plymouth,MA,158000,UnitedHealthcare,depression
+P0044,Olivia,Patel,2014-01-28,F,white,Cambridge,Middlesex,MA,60000,Aetna,chronic kidney disease
+P0045,Ethan,Patel,2005-08-21,M,asian,Cambridge,Middlesex,MA,112000,UnitedHealthcare,hyperlipidemia
+P0046,Chloe,Rivera,1962-05-19,F,hispanic,Cambridge,Middlesex,MA,73000,Medicare,none
+P0047,Emma,Walker,2012-07-18,F,white,Quincy,Norfolk,MA,86000,Medicaid,osteoarthritis
+P0048,Lucas,Smith,1945-05-07,M,hispanic,New Bedford,Bristol,MA,81000,Medicare,heart failure
+P0049,Ivy,Silva,1966-01-05,F,asian,Worcester,Worcester,MA,95000,Blue Cross,osteoarthritis
+P0050,Ruth,Kim,1957-11-07,F,white,Quincy,Norfolk,MA,126000,Medicare,none
+P0051,Fatima,Garcia,1994-08-04,F,hispanic,Brockton,Plymouth,MA,174000,Medicaid,hypertension
+P0052,Raj,Silva,1964-04-06,M,white,New Bedford,Bristol,MA,90000,Blue Cross,COPD
+P0053,Omar,Ross,1986-01-21,M,white,Quincy,Norfolk,MA,155000,UnitedHealthcare,heart failure
+P0054,Henry,Ward,1989-06-05,M,black,Cambridge,Middlesex,MA,134000,Blue Cross,none
+P0055,Ava,Patel,1994-02-09,F,white,New Bedford,Bristol,MA,146000,Aetna,obesity
+P0056,Noah,Chen,1955-02-26,M,asian,Worcester,Worcester,MA,52000,Medicare,COPD
+P0057,Carlos,Cohen,1972-03-07,M,hispanic,Pittsfield,Berkshire,MA,162000,Medicare,none
+P0058,Samuel,Lopez,1948-03-28,M,black,Lynn,Essex,MA,16000,UnitedHealthcare,none
+P0059,Rosa,Patel,2007-02-21,F,hispanic,Quincy,Norfolk,MA,147000,Blue Cross,osteoarthritis
+P0060,Chloe,Brown,2006-11-24,F,white,Worcester,Worcester,MA,150000,No Insurance,obesity
+P0061,Hugo,Hughes,1973-04-14,M,hispanic,Lynn,Essex,MA,155000,Blue Cross,asthma
+P0062,Ethan,Lopez,2010-05-07,M,black,Lynn,Essex,MA,148000,Blue Cross,COPD
+P0063,Carlos,Chen,1956-01-14,M,white,Lynn,Essex,MA,96000,UnitedHealthcare,hypertension
+P0064,Rosa,Okafor,1997-04-04,F,white,Springfield,Hampden,MA,69000,Medicare,depression
+P0065,Jamal,Silva,1940-08-02,M,white,New Bedford,Bristol,MA,122000,Medicaid,none
+P0066,Elena,Reyes,1935-07-13,F,hispanic,Pittsfield,Berkshire,MA,91000,Aetna,depression
+P0067,Rosa,Walker,1974-02-06,F,white,Lynn,Essex,MA,114000,Medicaid,none
+P0068,Jamal,Brown,1990-10-29,M,white,Springfield,Hampden,MA,115000,Blue Cross,none
+P0069,Fatima,Brown,2012-10-07,F,white,Worcester,Worcester,MA,27000,Medicaid,chronic kidney disease
+P0070,Emma,Murphy,2003-04-17,F,hispanic,Lynn,Essex,MA,86000,Aetna,depression
+P0071,Leo,Smith,2002-03-14,M,white,Worcester,Worcester,MA,104000,Medicare,hypertension
+P0072,Rosa,Kim,2010-04-16,F,white,Boston,Suffolk,MA,54000,Medicare,hyperlipidemia
+P0073,Grace,Cohen,1997-10-02,F,white,Pittsfield,Berkshire,MA,109000,Medicare,obesity
+P0074,Priya,Nguyen,1986-12-01,F,white,Springfield,Hampden,MA,94000,Blue Cross,depression
+P0075,Carlos,Ward,1996-12-16,M,hispanic,Cambridge,Middlesex,MA,77000,Medicare,none
+P0076,Wei,Ward,2005-03-19,M,white,Pittsfield,Berkshire,MA,151000,Medicaid,chronic kidney disease
+P0077,Emma,Smith,2011-03-21,F,white,New Bedford,Bristol,MA,140000,Medicare,chronic kidney disease
+P0078,Henry,Patel,2000-10-31,M,white,Springfield,Hampden,MA,181000,Medicaid,none
+P0079,Henry,Ward,1959-01-29,M,white,Lynn,Essex,MA,77000,UnitedHealthcare,hypertension
+P0080,Noah,Cohen,1986-02-14,M,black,Lynn,Essex,MA,112000,Medicaid,hyperlipidemia
+P0081,Leo,Kim,1966-10-31,M,asian,Springfield,Hampden,MA,102000,Medicaid,obesity
+P0082,James,Hughes,1952-02-21,M,white,New Bedford,Bristol,MA,199000,Medicaid,osteoarthritis
+P0083,Ava,Cohen,2006-02-19,F,white,Lynn,Essex,MA,90000,Medicare,none
+P0084,Ruth,Rivera,1977-06-16,F,black,Lowell,Middlesex,MA,103000,Medicaid,none
+P0085,Jamal,Walker,1962-07-05,M,white,Brockton,Plymouth,MA,45000,Aetna,chronic kidney disease
+P0086,Olivia,Kim,1954-05-31,F,asian,New Bedford,Bristol,MA,85000,Aetna,none
+P0087,Liam,Chen,1955-05-30,M,white,Worcester,Worcester,MA,92000,Medicare,osteoarthritis
+P0088,Linda,Johnson,1984-08-23,F,white,Lowell,Middlesex,MA,47000,Blue Cross,none
+P0089,James,Ward,1960-07-05,M,white,Worcester,Worcester,MA,127000,Medicaid,type 2 diabetes
+P0090,Wei,Garcia,1970-12-13,M,white,Lynn,Essex,MA,162000,Blue Cross,type 2 diabetes
+P0091,Ruth,Chen,1942-08-23,F,other,Springfield,Hampden,MA,45000,Blue Cross,depression
+P0092,Elena,Cohen,2016-07-03,F,white,New Bedford,Bristol,MA,165000,No Insurance,heart failure
+P0093,Aisha,Kim,1991-02-12,F,white,Pittsfield,Berkshire,MA,184000,Medicare,COPD
+P0094,Susan,Patel,1935-03-29,F,white,New Bedford,Bristol,MA,191000,Blue Cross,heart failure
+P0095,Priya,Chen,1998-01-25,F,hispanic,Cambridge,Middlesex,MA,33000,Aetna,heart failure
+P0096,Aisha,Price,1955-03-03,F,black,Quincy,Norfolk,MA,83000,UnitedHealthcare,hypertension
+P0097,Priya,Ross,2002-03-11,F,hispanic,Springfield,Hampden,MA,88000,Blue Cross,hyperlipidemia
+P0098,Ethan,Hughes,1983-06-12,M,white,Quincy,Norfolk,MA,35000,Blue Cross,depression
+P0099,Ethan,Smith,1943-03-12,M,white,Pittsfield,Berkshire,MA,187000,UnitedHealthcare,obesity
+P0100,Ruth,Johnson,2003-06-18,F,asian,Lowell,Middlesex,MA,135000,Blue Cross,hyperlipidemia
+P0101,Victor,Silva,1991-12-13,M,asian,Springfield,Hampden,MA,38000,Blue Cross,depression
+P0102,Wei,Patel,1964-08-03,M,white,Brockton,Plymouth,MA,141000,Medicaid,depression
+P0103,Susan,Murphy,1957-08-23,F,white,Lynn,Essex,MA,118000,UnitedHealthcare,type 2 diabetes
+P0104,Robert,Kim,1981-07-06,M,white,Quincy,Norfolk,MA,142000,Blue Cross,none
+P0105,Hannah,Price,1946-10-03,F,hispanic,Cambridge,Middlesex,MA,127000,UnitedHealthcare,hyperlipidemia
+P0106,Ivy,Lopez,1998-09-05,F,white,Boston,Suffolk,MA,156000,Medicare,depression
+P0107,Aisha,Cohen,1945-07-16,F,black,Cambridge,Middlesex,MA,54000,Blue Cross,none
+P0108,Ethan,Silva,2009-11-20,M,white,New Bedford,Bristol,MA,135000,Medicare,osteoarthritis
+P0109,Grace,Ross,1980-08-06,F,asian,Quincy,Norfolk,MA,49000,UnitedHealthcare,heart failure
+P0110,Owen,Walker,2008-08-12,M,white,Brockton,Plymouth,MA,91000,UnitedHealthcare,obesity
+P0111,Jamal,Price,1978-06-14,M,white,Springfield,Hampden,MA,156000,Aetna,depression
+P0112,Liam,Lopez,1986-04-19,M,white,Brockton,Plymouth,MA,120000,Medicare,none
+P0113,Samuel,Brown,1979-06-09,M,other,Quincy,Norfolk,MA,47000,Blue Cross,obesity
+P0114,Jamal,Nguyen,1982-03-09,M,hispanic,Worcester,Worcester,MA,18000,Aetna,depression
+P0115,Ava,Walker,1965-05-16,F,black,Worcester,Worcester,MA,116000,Blue Cross,chronic kidney disease
+P0116,Leo,Price,1938-03-22,M,black,Brockton,Plymouth,MA,75000,Blue Cross,heart failure
+P0117,Fatima,Nguyen,2003-03-20,F,black,Worcester,Worcester,MA,40000,Blue Cross,none
+P0118,Robert,Murphy,2006-06-05,M,white,Boston,Suffolk,MA,106000,Medicaid,asthma
+P0119,Fatima,Ward,1996-03-02,F,asian,New Bedford,Bristol,MA,58000,Medicare,obesity
+P0120,Noah,Reyes,2016-11-22,M,black,Pittsfield,Berkshire,MA,74000,Blue Cross,heart failure
+P0121,James,Cohen,2015-11-07,M,white,Lowell,Middlesex,MA,154000,Medicare,hyperlipidemia
+P0122,Raj,Silva,1996-12-06,M,white,Pittsfield,Berkshire,MA,92000,Medicare,depression
+P0123,Noah,Okafor,1986-04-23,M,white,Worcester,Worcester,MA,90000,No Insurance,heart failure
+P0124,Hannah,Smith,1985-10-09,F,hispanic,Quincy,Norfolk,MA,27000,UnitedHealthcare,none
+P0125,Noah,Ross,2006-12-11,M,white,Lowell,Middlesex,MA,177000,Medicare,heart failure
+P0126,Linda,Chen,2005-10-01,F,white,Worcester,Worcester,MA,163000,Medicaid,asthma
+P0127,Emma,Silva,1950-10-04,F,white,Lowell,Middlesex,MA,153000,UnitedHealthcare,chronic kidney disease
+P0128,Ethan,Reyes,2007-05-10,M,white,Springfield,Hampden,MA,101000,UnitedHealthcare,hyperlipidemia
+P0129,Rosa,Okafor,2010-11-16,F,asian,Springfield,Hampden,MA,108000,Medicare,depression
+P0130,Leah,Nguyen,1975-10-20,F,white,Lowell,Middlesex,MA,187000,Medicaid,depression
+P0131,Noah,Reyes,1937-03-31,M,black,Worcester,Worcester,MA,158000,Medicaid,obesity
+P0132,Chloe,Chen,1993-03-31,F,white,Worcester,Worcester,MA,50000,Medicare,type 2 diabetes
+P0133,Wei,Nguyen,1956-01-24,M,hispanic,Lynn,Essex,MA,49000,Medicaid,chronic kidney disease
+P0134,Daniel,Silva,1993-10-03,M,white,Pittsfield,Berkshire,MA,140000,Blue Cross,heart failure
+P0135,Grace,Cohen,1974-11-23,F,hispanic,Brockton,Plymouth,MA,107000,Medicare,none
+P0136,Mateo,Johnson,1970-09-20,M,white,New Bedford,Bristol,MA,46000,No Insurance,hyperlipidemia
+P0137,Ivy,Smith,1939-07-16,F,asian,Cambridge,Middlesex,MA,77000,No Insurance,none
+P0138,Leah,Kim,1987-08-10,F,white,Worcester,Worcester,MA,74000,Medicaid,asthma
+P0139,Mei,Brown,1983-06-19,F,white,Lowell,Middlesex,MA,59000,Medicare,type 2 diabetes
+P0140,Nora,Lopez,1987-10-30,F,white,Boston,Suffolk,MA,59000,Medicaid,asthma
+P0141,Wei,Garcia,1977-09-22,M,white,New Bedford,Bristol,MA,107000,Blue Cross,hypertension
+P0142,Noah,Ross,1938-11-21,M,asian,New Bedford,Bristol,MA,183000,Blue Cross,hyperlipidemia
+P0143,Ava,Okafor,1973-03-30,F,black,Boston,Suffolk,MA,140000,Aetna,hyperlipidemia
+P0144,Emma,Ross,1948-04-22,F,white,Worcester,Worcester,MA,85000,Blue Cross,obesity
+P0145,Hugo,Hughes,1961-06-16,M,white,Quincy,Norfolk,MA,169000,Blue Cross,none
+P0146,Grace,Silva,1975-07-06,F,hispanic,New Bedford,Bristol,MA,120000,Medicaid,hyperlipidemia
+P0147,Wei,Murphy,1973-04-15,M,white,Quincy,Norfolk,MA,80000,Medicaid,asthma
+P0148,Carlos,Garcia,1943-05-13,M,white,Worcester,Worcester,MA,110000,UnitedHealthcare,osteoarthritis
+P0149,Leah,Price,1964-07-28,F,black,Pittsfield,Berkshire,MA,120000,Medicaid,none
+P0150,Raj,Ross,1963-01-12,M,white,Boston,Suffolk,MA,162000,Blue Cross,asthma
+P0151,Wei,Rivera,2010-11-04,M,black,Cambridge,Middlesex,MA,44000,Aetna,obesity
+P0152,Leah,Ross,1990-01-17,F,black,Quincy,Norfolk,MA,157000,Medicare,none
+P0153,Omar,Walker,1998-01-16,M,asian,Boston,Suffolk,MA,101000,Medicaid,asthma
+P0154,Elena,Garcia,1947-09-23,F,asian,Pittsfield,Berkshire,MA,22000,Medicare,osteoarthritis
+P0155,Fatima,Cohen,1965-08-01,F,white,Quincy,Norfolk,MA,94000,Aetna,none
+P0156,Mei,Patel,2002-09-07,F,black,Boston,Suffolk,MA,187000,Medicare,hyperlipidemia
+P0157,Hugo,Cohen,1972-02-27,M,white,Lynn,Essex,MA,146000,Medicare,depression
+P0158,Ruth,Reyes,1982-04-10,F,black,Lowell,Middlesex,MA,26000,Medicare,obesity
+P0159,Grace,Chen,1953-12-13,F,asian,Boston,Suffolk,MA,80000,Medicaid,hypertension
+P0160,Fatima,Patel,1946-08-04,F,white,Lynn,Essex,MA,195000,Medicare,osteoarthritis
+P0161,Samuel,Johnson,1974-02-19,M,white,Worcester,Worcester,MA,34000,UnitedHealthcare,obesity
+P0162,Samuel,Silva,1960-12-21,M,white,Pittsfield,Berkshire,MA,20000,No Insurance,asthma
+P0163,Carlos,Silva,2010-10-06,M,white,Brockton,Plymouth,MA,126000,Blue Cross,osteoarthritis
+P0164,Priya,Murphy,1954-11-17,F,white,Quincy,Norfolk,MA,58000,Medicare,none
+P0165,Sofia,Kim,2016-04-10,F,asian,New Bedford,Bristol,MA,104000,Aetna,none
+P0166,Aisha,Brown,1957-12-18,F,white,Cambridge,Middlesex,MA,169000,Medicare,none
+P0167,Ava,Cohen,2002-09-07,F,black,Springfield,Hampden,MA,163000,Blue Cross,obesity
+P0168,Daniel,Cohen,1941-02-15,M,white,Brockton,Plymouth,MA,176000,Medicaid,heart failure
+P0169,Sofia,Garcia,1962-11-06,F,white,Brockton,Plymouth,MA,24000,Medicare,heart failure
+P0170,Ivy,Ross,1980-06-28,F,white,Worcester,Worcester,MA,163000,Blue Cross,none
+P0171,Ruth,Kim,1963-11-05,F,black,Lynn,Essex,MA,143000,Medicare,type 2 diabetes
+P0172,Lucas,Garcia,1980-04-07,M,black,Worcester,Worcester,MA,25000,Medicare,hyperlipidemia
+P0173,Owen,Ross,1949-03-29,M,white,New Bedford,Bristol,MA,87000,Medicaid,none
+P0174,Robert,Murphy,1940-11-29,M,white,Pittsfield,Berkshire,MA,157000,Aetna,heart failure
+P0175,Daniel,Murphy,1942-04-24,M,black,Pittsfield,Berkshire,MA,51000,UnitedHealthcare,heart failure
+P0176,Hugo,Garcia,1962-10-10,M,black,Springfield,Hampden,MA,179000,UnitedHealthcare,asthma
+P0177,Sofia,Rivera,1936-08-20,F,white,Quincy,Norfolk,MA,61000,No Insurance,chronic kidney disease
+P0178,Noah,Brown,1948-11-25,M,white,Cambridge,Middlesex,MA,40000,Blue Cross,osteoarthritis
+P0179,Ivy,Brown,1988-07-31,F,white,Brockton,Plymouth,MA,56000,Medicare,none
+P0180,Linda,Silva,1967-09-07,F,black,Lynn,Essex,MA,75000,No Insurance,obesity
+P0181,Noah,Price,1956-06-16,M,white,Lynn,Essex,MA,135000,UnitedHealthcare,COPD
+P0182,Jamal,Cohen,2004-01-11,M,white,Pittsfield,Berkshire,MA,112000,Blue Cross,depression
+P0183,Ivy,Brown,2013-04-27,F,white,Cambridge,Middlesex,MA,179000,Blue Cross,chronic kidney disease
+P0184,Aisha,Chen,1942-07-11,F,asian,New Bedford,Bristol,MA,84000,Blue Cross,osteoarthritis
+P0185,Susan,Lopez,2008-04-08,F,white,Quincy,Norfolk,MA,104000,No Insurance,depression
+P0186,Sofia,Rivera,1956-02-25,F,white,Quincy,Norfolk,MA,35000,Medicaid,type 2 diabetes
+P0187,Lucas,Brown,1947-05-06,M,white,Worcester,Worcester,MA,135000,Aetna,asthma
+P0188,Hugo,Smith,2016-04-08,M,white,Lynn,Essex,MA,80000,Medicare,asthma
+P0189,Raj,Lopez,1962-01-07,M,white,Worcester,Worcester,MA,76000,Medicaid,none
+P0190,Wei,Reyes,1988-07-14,M,white,Worcester,Worcester,MA,176000,Blue Cross,COPD
+P0191,Fatima,Smith,1990-02-27,F,white,Lowell,Middlesex,MA,161000,Medicaid,none
+P0192,Nora,Garcia,1982-03-12,F,white,New Bedford,Bristol,MA,144000,Blue Cross,depression
+P0193,Samuel,Rivera,1957-10-03,M,asian,Boston,Suffolk,MA,106000,UnitedHealthcare,chronic kidney disease
+P0194,Ruth,Murphy,1946-12-20,F,white,Worcester,Worcester,MA,154000,Medicaid,none
+P0195,Ava,Patel,2007-10-21,F,white,Lynn,Essex,MA,198000,Aetna,hyperlipidemia
+P0196,Grace,Johnson,2005-12-22,F,white,Lowell,Middlesex,MA,25000,Medicaid,heart failure
+P0197,Leo,Walker,1938-04-14,M,asian,New Bedford,Bristol,MA,63000,Medicaid,none
+P0198,Hannah,Nguyen,2006-09-17,F,white,Brockton,Plymouth,MA,117000,Aetna,depression
+P0199,Leo,Reyes,1967-12-16,M,hispanic,Springfield,Hampden,MA,147000,Medicaid,hypertension
+P0200,Henry,Ross,2008-10-10,M,white,Worcester,Worcester,MA,90000,Medicaid,hypertension
+P0201,Raj,Cohen,1989-01-23,M,asian,Lowell,Middlesex,MA,57000,Aetna,chronic kidney disease
+P0202,Mateo,Ross,1974-01-08,M,white,Boston,Suffolk,MA,29000,Medicare,none
+P0203,Owen,Patel,1937-10-17,M,white,Brockton,Plymouth,MA,170000,Aetna,hyperlipidemia
+P0204,Susan,Lopez,2004-11-04,F,black,Springfield,Hampden,MA,107000,Medicaid,obesity
+P0205,Mei,Cohen,1968-04-12,F,white,Pittsfield,Berkshire,MA,34000,Blue Cross,osteoarthritis
+P0206,Lucas,Walker,1957-05-24,M,other,Quincy,Norfolk,MA,21000,Aetna,hyperlipidemia
+P0207,Wei,Walker,2004-07-11,M,white,New Bedford,Bristol,MA,129000,Medicare,obesity
+P0208,Liam,Nguyen,1947-03-06,M,hispanic,Lynn,Essex,MA,130000,Medicare,none
+P0209,Lucas,Rivera,1998-08-28,M,white,Worcester,Worcester,MA,153000,Medicaid,heart failure
+P0210,Nora,Hughes,1955-02-12,F,white,Springfield,Hampden,MA,66000,UnitedHealthcare,COPD
+P0211,Mateo,Price,1986-05-05,M,white,Boston,Suffolk,MA,156000,Medicare,hypertension
+P0212,Elena,Reyes,1982-02-28,F,white,Lowell,Middlesex,MA,119000,UnitedHealthcare,hypertension
+P0213,Susan,Cohen,1976-10-16,F,black,Brockton,Plymouth,MA,103000,Medicare,none
+P0214,Fatima,Hughes,2016-09-14,F,hispanic,Springfield,Hampden,MA,46000,Blue Cross,heart failure
+P0215,Emma,Lopez,1966-01-16,F,hispanic,Springfield,Hampden,MA,147000,UnitedHealthcare,hypertension
+P0216,Isaac,Walker,1946-03-25,M,black,Cambridge,Middlesex,MA,172000,Blue Cross,osteoarthritis
+P0217,Ruth,Brown,1950-05-11,F,black,Pittsfield,Berkshire,MA,199000,UnitedHealthcare,chronic kidney disease
+P0218,Susan,Johnson,1992-07-19,F,asian,Boston,Suffolk,MA,82000,Aetna,none
+P0219,James,Reyes,2014-10-03,M,black,Pittsfield,Berkshire,MA,89000,Blue Cross,heart failure
+P0220,Samuel,Chen,1975-09-09,M,white,Cambridge,Middlesex,MA,30000,Medicare,depression
+P0221,Liam,Murphy,1989-06-05,M,white,Lynn,Essex,MA,198000,Medicaid,chronic kidney disease
+P0222,Mateo,Hughes,1985-05-22,M,white,Springfield,Hampden,MA,76000,Blue Cross,heart failure
+P0223,Daniel,Nguyen,1939-07-17,M,white,Cambridge,Middlesex,MA,113000,UnitedHealthcare,depression
+P0224,Emma,Ward,1999-09-11,F,white,Springfield,Hampden,MA,55000,Blue Cross,osteoarthritis
+P0225,Raj,Reyes,1937-01-29,M,white,Lynn,Essex,MA,115000,Blue Cross,COPD
+P0226,Nora,Johnson,1939-07-15,F,white,Pittsfield,Berkshire,MA,167000,UnitedHealthcare,none
+P0227,Isaac,Smith,2011-01-02,M,white,Lowell,Middlesex,MA,49000,UnitedHealthcare,none
+P0228,Mateo,Johnson,1970-12-09,M,white,Quincy,Norfolk,MA,158000,Medicare,osteoarthritis
+P0229,Samuel,Hughes,1975-05-28,M,asian,Worcester,Worcester,MA,86000,UnitedHealthcare,obesity
+P0230,Aisha,Okafor,1968-06-24,F,asian,Springfield,Hampden,MA,101000,Blue Cross,chronic kidney disease
+P0231,Ivy,Hughes,1971-01-04,F,white,Cambridge,Middlesex,MA,26000,Medicare,none
+P0232,Owen,Cohen,1948-05-12,M,black,Lynn,Essex,MA,146000,Medicare,obesity
+P0233,Samuel,Ross,2001-04-30,M,hispanic,Springfield,Hampden,MA,166000,Medicaid,osteoarthritis
+P0234,Raj,Reyes,2008-03-08,M,white,Pittsfield,Berkshire,MA,99000,Aetna,depression
+P0235,Hugo,Reyes,1958-10-27,M,other,Boston,Suffolk,MA,163000,Blue Cross,none
+P0236,Ava,Patel,1982-01-12,F,black,Pittsfield,Berkshire,MA,173000,Aetna,depression
+P0237,Linda,Ward,1997-11-05,F,white,Cambridge,Middlesex,MA,19000,Blue Cross,depression
+P0238,Grace,Silva,1980-01-08,F,asian,Quincy,Norfolk,MA,135000,UnitedHealthcare,none
+P0239,Sofia,Kim,1985-04-27,F,white,Springfield,Hampden,MA,184000,Blue Cross,depression
+P0240,Jamal,Price,1965-09-17,M,white,Springfield,Hampden,MA,188000,Aetna,none
+P0241,Leo,Kim,1957-02-11,M,white,Pittsfield,Berkshire,MA,91000,Medicare,heart failure
+P0242,Leo,Murphy,1978-01-17,M,white,Cambridge,Middlesex,MA,199000,Medicaid,hypertension
+P0243,Mateo,Brown,1961-01-21,M,white,Quincy,Norfolk,MA,197000,Medicare,hyperlipidemia
+P0244,Liam,Kim,2009-04-12,M,white,Lynn,Essex,MA,158000,Aetna,asthma
+P0245,Ruth,Lopez,1956-10-01,F,white,Pittsfield,Berkshire,MA,150000,Medicare,COPD
+P0246,Fatima,Murphy,1999-05-11,F,white,Worcester,Worcester,MA,189000,Aetna,type 2 diabetes
+P0247,Ava,Reyes,1993-05-12,F,white,Quincy,Norfolk,MA,88000,Medicaid,none
+P0248,Ruth,Lopez,1983-01-04,F,asian,Worcester,Worcester,MA,24000,UnitedHealthcare,asthma
+P0249,Robert,Okafor,2005-09-09,M,white,Springfield,Hampden,MA,89000,UnitedHealthcare,type 2 diabetes
+P0250,Hugo,Nguyen,2018-04-18,M,other,Pittsfield,Berkshire,MA,87000,Blue Cross,none
+P0251,Owen,Cohen,1959-06-24,M,white,Springfield,Hampden,MA,43000,Medicaid,none
+P0252,Omar,Smith,2001-01-31,M,white,Lowell,Middlesex,MA,90000,Blue Cross,none
+P0253,Ivy,Okafor,2009-03-11,F,white,Springfield,Hampden,MA,98000,Medicare,none
+P0254,Mei,Reyes,1964-01-12,F,hispanic,Springfield,Hampden,MA,16000,Medicaid,COPD
+P0255,Lucas,Chen,1987-04-04,M,asian,Lowell,Middlesex,MA,17000,Medicaid,chronic kidney disease
+P0256,Aisha,Cohen,1962-07-11,F,white,Boston,Suffolk,MA,190000,Blue Cross,none
+P0257,Raj,Rivera,1990-02-21,M,white,Worcester,Worcester,MA,49000,Blue Cross,hyperlipidemia
+P0258,Isaac,Reyes,2002-12-11,M,white,Quincy,Norfolk,MA,185000,UnitedHealthcare,none
+P0259,Susan,Hughes,1975-01-30,F,white,Pittsfield,Berkshire,MA,107000,Medicare,obesity
+P0260,Leah,Hughes,1953-02-19,F,black,Boston,Suffolk,MA,53000,Medicare,osteoarthritis
+P0261,Liam,Ward,1978-11-08,M,white,Worcester,Worcester,MA,145000,Blue Cross,type 2 diabetes
+P0262,Owen,Silva,1975-12-25,M,black,Springfield,Hampden,MA,158000,Blue Cross,none
+P0263,Samuel,Walker,2008-03-31,M,white,Boston,Suffolk,MA,70000,Blue Cross,type 2 diabetes
+P0264,Carlos,Price,1940-05-28,M,hispanic,Brockton,Plymouth,MA,32000,No Insurance,hyperlipidemia
+P0265,Fatima,Patel,2003-12-27,F,white,Lowell,Middlesex,MA,179000,No Insurance,none
+P0266,Samuel,Cohen,2013-01-06,M,hispanic,Brockton,Plymouth,MA,111000,Medicaid,none
+P0267,Aisha,Patel,1983-03-14,F,white,Brockton,Plymouth,MA,47000,Aetna,COPD
+P0268,Priya,Cohen,1995-06-04,F,asian,Boston,Suffolk,MA,123000,Blue Cross,COPD
+P0269,Nora,Brown,1959-09-24,F,white,Lynn,Essex,MA,43000,Medicare,none
+P0270,James,Lopez,1953-06-27,M,white,Pittsfield,Berkshire,MA,167000,Medicare,obesity
+P0271,Linda,Okafor,1974-05-19,F,white,Cambridge,Middlesex,MA,70000,Aetna,none
+P0272,Sofia,Chen,1956-01-04,F,asian,Springfield,Hampden,MA,162000,Medicaid,obesity
+P0273,Raj,Brown,1994-03-25,M,white,Cambridge,Middlesex,MA,120000,Medicaid,type 2 diabetes
+P0274,Leah,Reyes,1939-03-17,F,other,Quincy,Norfolk,MA,179000,Aetna,none
+P0275,Henry,Brown,1961-11-26,M,white,Quincy,Norfolk,MA,152000,Blue Cross,COPD
+P0276,Jamal,Johnson,1985-06-15,M,white,Springfield,Hampden,MA,121000,Blue Cross,asthma
+P0277,Ethan,Kim,1964-08-18,M,black,Cambridge,Middlesex,MA,130000,UnitedHealthcare,hypertension
+P0278,Hannah,Okafor,1995-06-09,F,black,Boston,Suffolk,MA,25000,UnitedHealthcare,COPD
+P0279,Grace,Murphy,1962-03-14,F,hispanic,Lynn,Essex,MA,18000,Medicare,COPD
+P0280,Rosa,Ross,1998-02-20,F,white,Lynn,Essex,MA,76000,Blue Cross,none
+P0281,Jamal,Price,1993-03-14,M,white,Quincy,Norfolk,MA,81000,Medicaid,hyperlipidemia
+P0282,Leo,Murphy,2017-01-10,M,white,Worcester,Worcester,MA,95000,Medicaid,obesity
+P0283,Maria,Walker,1984-08-21,F,hispanic,Springfield,Hampden,MA,163000,Aetna,heart failure
+P0284,Emma,Lopez,1969-01-28,F,black,Cambridge,Middlesex,MA,77000,Blue Cross,none
+P0285,Leo,Reyes,1976-05-05,M,white,Lowell,Middlesex,MA,105000,Medicare,none
+P0286,Isaac,Johnson,1982-01-02,M,white,Springfield,Hampden,MA,34000,No Insurance,none
+P0287,Fatima,Brown,2010-08-03,F,black,Boston,Suffolk,MA,32000,Aetna,type 2 diabetes
+P0288,Chloe,Rivera,1940-06-03,F,black,New Bedford,Bristol,MA,185000,No Insurance,hyperlipidemia
+P0289,James,Price,1984-06-28,M,white,Boston,Suffolk,MA,19000,Blue Cross,heart failure
+P0290,Owen,Silva,2007-04-29,M,hispanic,Boston,Suffolk,MA,60000,Medicare,hypertension
+P0291,Grace,Ross,1982-03-25,F,white,Cambridge,Middlesex,MA,105000,Medicaid,depression
+P0292,Elena,Cohen,1985-09-08,F,white,Brockton,Plymouth,MA,193000,Medicare,none
+P0293,Susan,Okafor,1969-01-09,F,white,Boston,Suffolk,MA,136000,Medicare,type 2 diabetes
+P0294,Ava,Silva,1992-11-09,F,asian,Worcester,Worcester,MA,159000,No Insurance,hypertension
+P0295,Grace,Ward,1977-08-29,F,white,Cambridge,Middlesex,MA,34000,Aetna,heart failure
+P0296,Emma,Smith,1953-08-02,F,black,Springfield,Hampden,MA,197000,UnitedHealthcare,hypertension
+P0297,Victor,Lopez,1985-11-03,M,hispanic,Springfield,Hampden,MA,114000,Aetna,osteoarthritis
+P0298,Daniel,Garcia,1979-12-05,M,asian,Quincy,Norfolk,MA,103000,Medicare,depression
+P0299,Emma,Ross,2003-12-28,F,black,Worcester,Worcester,MA,167000,Medicaid,none
+P0300,Ethan,Cohen,1979-01-06,M,white,Boston,Suffolk,MA,156000,No Insurance,depression
+P0301,Elena,Garcia,2004-04-10,F,black,Pittsfield,Berkshire,MA,78000,Aetna,hypertension
+P0302,Samuel,Brown,2001-05-11,M,white,Springfield,Hampden,MA,107000,Medicare,type 2 diabetes
+P0303,Mateo,Walker,1944-03-03,M,white,Lynn,Essex,MA,62000,Blue Cross,osteoarthritis
+P0304,James,Garcia,1966-10-02,M,black,Worcester,Worcester,MA,167000,Blue Cross,chronic kidney disease
+P0305,Raj,Silva,1969-10-16,M,asian,Boston,Suffolk,MA,158000,UnitedHealthcare,COPD
+P0306,Olivia,Brown,1959-02-15,F,white,Quincy,Norfolk,MA,141000,Medicare,asthma
+P0307,Henry,Chen,1978-06-11,M,asian,Lowell,Middlesex,MA,107000,Medicaid,COPD
+P0308,Hugo,Kim,1976-01-29,M,white,Pittsfield,Berkshire,MA,92000,Medicare,depression
+P0309,Samuel,Murphy,1974-06-30,M,white,Pittsfield,Berkshire,MA,181000,No Insurance,asthma
+P0310,Hugo,Kim,1977-12-22,M,white,Brockton,Plymouth,MA,116000,No Insurance,heart failure
+P0311,Noah,Murphy,1968-09-26,M,white,Pittsfield,Berkshire,MA,115000,Medicaid,obesity
+P0312,Leah,Patel,1996-02-28,F,asian,Pittsfield,Berkshire,MA,21000,No Insurance,hyperlipidemia
+P0313,Priya,Garcia,2008-06-21,F,hispanic,Lynn,Essex,MA,119000,Aetna,asthma
+P0314,Ethan,Brown,1999-03-02,M,white,Cambridge,Middlesex,MA,111000,Medicare,obesity
+P0315,Samuel,Price,1980-06-13,M,hispanic,Pittsfield,Berkshire,MA,192000,Medicaid,type 2 diabetes
+P0316,Hugo,Garcia,1944-10-23,M,asian,New Bedford,Bristol,MA,183000,Aetna,asthma
+P0317,Elena,Murphy,2006-06-07,F,white,Pittsfield,Berkshire,MA,17000,Medicare,COPD
+P0318,Nora,Okafor,1976-07-17,F,asian,Lynn,Essex,MA,165000,Aetna,asthma
+P0319,Leo,Nguyen,1961-07-03,M,white,Boston,Suffolk,MA,36000,Medicare,none
+P0320,Priya,Murphy,1975-11-07,F,asian,Brockton,Plymouth,MA,148000,Blue Cross,hyperlipidemia
+P0321,Chloe,Murphy,1941-01-10,F,white,Lynn,Essex,MA,196000,Medicare,chronic kidney disease
+P0322,Rosa,Hughes,1950-08-26,F,black,Springfield,Hampden,MA,99000,Blue Cross,hyperlipidemia
+P0323,Olivia,Patel,1992-06-17,F,black,Quincy,Norfolk,MA,116000,Medicare,obesity
+P0324,Ruth,Silva,1969-11-19,F,white,Lynn,Essex,MA,69000,Medicare,none
+P0325,Aisha,Price,1951-10-10,F,white,Pittsfield,Berkshire,MA,65000,Blue Cross,heart failure
+P0326,Lucas,Ross,1969-11-12,M,black,New Bedford,Bristol,MA,165000,Medicare,chronic kidney disease
+P0327,Omar,Chen,2017-06-02,M,black,Pittsfield,Berkshire,MA,36000,Aetna,chronic kidney disease
+P0328,Priya,Nguyen,1951-06-04,F,white,Cambridge,Middlesex,MA,51000,Blue Cross,depression
+P0329,Elena,Silva,1951-08-31,F,white,Pittsfield,Berkshire,MA,152000,Aetna,none
+P0330,Olivia,Reyes,1960-11-29,F,white,New Bedford,Bristol,MA,95000,UnitedHealthcare,obesity
+P0331,Maria,Reyes,1947-04-01,F,white,Brockton,Plymouth,MA,113000,No Insurance,osteoarthritis
+P0332,Leo,Silva,1998-09-16,M,hispanic,Quincy,Norfolk,MA,140000,Medicare,obesity
+P0333,Priya,Johnson,1959-08-29,F,white,Cambridge,Middlesex,MA,88000,Medicare,hyperlipidemia
+P0334,Owen,Nguyen,1986-05-19,M,white,New Bedford,Bristol,MA,154000,UnitedHealthcare,chronic kidney disease
+P0335,Leah,Kim,1973-02-21,F,white,Lynn,Essex,MA,182000,Aetna,heart failure
+P0336,Hannah,Rivera,2012-05-08,F,asian,Lynn,Essex,MA,127000,UnitedHealthcare,hypertension
+P0337,Ruth,Rivera,2012-03-31,F,asian,Cambridge,Middlesex,MA,176000,Medicaid,obesity
+P0338,Grace,Johnson,1986-02-22,F,white,Cambridge,Middlesex,MA,86000,Blue Cross,asthma
+P0339,Raj,Ward,1958-12-26,M,hispanic,Lowell,Middlesex,MA,146000,No Insurance,none
+P0340,Fatima,Johnson,1959-11-18,F,hispanic,Springfield,Hampden,MA,47000,Aetna,asthma
+P0341,Emma,Lopez,2003-04-25,F,hispanic,Springfield,Hampden,MA,115000,Blue Cross,obesity
+P0342,Samuel,Cohen,1941-10-10,M,black,Quincy,Norfolk,MA,38000,Medicaid,none
+P0343,Jamal,Reyes,1964-05-12,M,black,Brockton,Plymouth,MA,38000,Aetna,hyperlipidemia
+P0344,Isaac,Okafor,1954-07-17,M,other,Worcester,Worcester,MA,69000,Blue Cross,chronic kidney disease
+P0345,Isaac,Ward,1946-09-19,M,black,Brockton,Plymouth,MA,139000,UnitedHealthcare,none
+P0346,Aisha,Cohen,1936-06-17,F,white,Boston,Suffolk,MA,55000,Blue Cross,type 2 diabetes
+P0347,Daniel,Chen,1949-04-06,M,hispanic,Cambridge,Middlesex,MA,85000,Medicare,chronic kidney disease
+P0348,Mateo,Patel,1939-08-24,M,white,Worcester,Worcester,MA,93000,Aetna,none
+P0349,Susan,Nguyen,1935-02-05,F,white,Quincy,Norfolk,MA,34000,Medicare,COPD
+P0350,James,Murphy,2008-04-22,M,white,Boston,Suffolk,MA,123000,Aetna,hyperlipidemia
+P0351,Elena,Garcia,2000-07-23,F,asian,Cambridge,Middlesex,MA,41000,Medicaid,heart failure
+P0352,Mei,Brown,1941-02-19,F,white,Quincy,Norfolk,MA,17000,Blue Cross,asthma
+P0353,Liam,Brown,2017-07-12,M,white,Brockton,Plymouth,MA,190000,Blue Cross,COPD
+P0354,Mei,Nguyen,1987-11-23,F,asian,Worcester,Worcester,MA,104000,No Insurance,chronic kidney disease
+P0355,Hannah,Garcia,1957-04-06,F,black,Cambridge,Middlesex,MA,168000,Aetna,heart failure
+P0356,Grace,Hughes,1989-06-13,F,white,Lowell,Middlesex,MA,115000,Medicaid,type 2 diabetes
+P0357,Elena,Nguyen,1956-08-17,F,white,Lynn,Essex,MA,167000,Medicare,type 2 diabetes
+P0358,Daniel,Okafor,2012-03-24,M,hispanic,Brockton,Plymouth,MA,122000,Medicaid,none
+P0359,Susan,Smith,1987-09-11,F,white,Lynn,Essex,MA,82000,Medicare,type 2 diabetes
+P0360,Raj,Hughes,2003-10-27,M,white,New Bedford,Bristol,MA,194000,Medicaid,none
+P0361,Susan,Chen,1942-02-02,F,white,Lowell,Middlesex,MA,67000,No Insurance,asthma
+P0362,Victor,Garcia,1962-10-29,M,black,Quincy,Norfolk,MA,76000,Medicare,hypertension
+P0363,Jamal,Ross,1989-08-15,M,white,Worcester,Worcester,MA,185000,Aetna,none
+P0364,Maria,Brown,1997-12-07,F,white,Worcester,Worcester,MA,142000,No Insurance,osteoarthritis
+P0365,Mateo,Brown,2002-04-07,M,asian,Springfield,Hampden,MA,83000,Aetna,hypertension
+P0366,Fatima,Walker,1981-12-30,F,white,Brockton,Plymouth,MA,197000,No Insurance,none
+P0367,Chloe,Hughes,1967-04-23,F,white,Lynn,Essex,MA,160000,Medicare,asthma
+P0368,Victor,Nguyen,1955-06-29,M,asian,Worcester,Worcester,MA,15000,Medicare,type 2 diabetes
+P0369,Ava,Rivera,1969-05-11,F,hispanic,Boston,Suffolk,MA,60000,No Insurance,type 2 diabetes
+P0370,Lucas,Lopez,1972-05-05,M,hispanic,Cambridge,Middlesex,MA,96000,Medicaid,hypertension
+P0371,Owen,Johnson,1951-02-02,M,white,Worcester,Worcester,MA,147000,No Insurance,depression
+P0372,Priya,Chen,1964-05-12,F,white,Lynn,Essex,MA,131000,Medicare,COPD
+P0373,Raj,Ross,1956-10-05,M,white,Pittsfield,Berkshire,MA,166000,No Insurance,none
+P0374,Rosa,Brown,1935-07-28,F,hispanic,New Bedford,Bristol,MA,21000,Medicare,chronic kidney disease
+P0375,Maria,Okafor,2011-03-03,F,asian,Brockton,Plymouth,MA,93000,Medicare,osteoarthritis
+P0376,Ava,Johnson,1947-10-10,F,asian,Quincy,Norfolk,MA,38000,Medicare,COPD
+P0377,Jamal,Garcia,1987-02-07,M,white,Brockton,Plymouth,MA,49000,Blue Cross,depression
+P0378,Ruth,Johnson,1974-01-09,F,black,Pittsfield,Berkshire,MA,48000,Medicare,heart failure
+P0379,Lucas,Murphy,1975-08-14,M,white,Quincy,Norfolk,MA,34000,No Insurance,asthma
+P0380,Aisha,Patel,1975-05-02,F,white,Springfield,Hampden,MA,119000,Medicare,chronic kidney disease
+P0381,Priya,Cohen,1958-10-10,F,hispanic,Lynn,Essex,MA,38000,Medicare,none
+P0382,Robert,Kim,2009-12-29,M,hispanic,Pittsfield,Berkshire,MA,52000,Medicare,COPD
+P0383,Owen,Johnson,1995-10-02,M,white,Quincy,Norfolk,MA,59000,Medicare,depression
+P0384,Isaac,Lopez,1943-07-01,M,white,New Bedford,Bristol,MA,50000,Medicare,type 2 diabetes
+P0385,Grace,Okafor,1968-05-24,F,black,Springfield,Hampden,MA,180000,Medicare,obesity
+P0386,James,Garcia,1952-09-27,M,hispanic,Worcester,Worcester,MA,128000,UnitedHealthcare,hypertension
+P0387,Robert,Cohen,1939-07-18,M,white,Worcester,Worcester,MA,161000,Blue Cross,none
+P0388,James,Okafor,1996-04-17,M,white,Lynn,Essex,MA,105000,Medicare,asthma
+P0389,Jamal,Brown,1938-02-09,M,black,Lowell,Middlesex,MA,172000,Medicare,heart failure
+P0390,Isaac,Reyes,1940-06-21,M,white,Quincy,Norfolk,MA,113000,Medicare,COPD
+P0391,Maria,Okafor,2005-02-23,F,asian,New Bedford,Bristol,MA,137000,Blue Cross,hyperlipidemia
+P0392,Owen,Murphy,1969-11-04,M,white,Pittsfield,Berkshire,MA,21000,Medicaid,COPD
+P0393,Linda,Reyes,1982-07-01,F,white,Lowell,Middlesex,MA,164000,No Insurance,asthma
+P0394,Rosa,Walker,1982-11-17,F,asian,Cambridge,Middlesex,MA,29000,Aetna,COPD
+P0395,Omar,Patel,1956-03-22,M,black,Brockton,Plymouth,MA,193000,Medicaid,obesity
+P0396,Ruth,Ward,1947-10-01,F,black,Brockton,Plymouth,MA,63000,UnitedHealthcare,none
+P0397,Raj,Patel,1978-12-31,M,white,New Bedford,Bristol,MA,29000,Medicare,COPD
+P0398,Ava,Smith,1964-10-05,F,hispanic,New Bedford,Bristol,MA,66000,UnitedHealthcare,chronic kidney disease
+P0399,Linda,Smith,1948-04-02,F,black,Brockton,Plymouth,MA,51000,Aetna,osteoarthritis
+P0400,Mateo,Okafor,1987-07-29,M,white,Worcester,Worcester,MA,92000,Medicaid,asthma
+P0401,Lucas,Patel,1998-06-11,M,other,Lynn,Essex,MA,192000,UnitedHealthcare,obesity
+P0402,Victor,Patel,1968-12-11,M,white,Cambridge,Middlesex,MA,191000,Medicaid,asthma
+P0403,Elena,Ward,1937-11-27,F,white,Pittsfield,Berkshire,MA,96000,UnitedHealthcare,obesity
+P0404,Aisha,Reyes,1947-08-14,F,white,Pittsfield,Berkshire,MA,34000,Medicare,chronic kidney disease
+P0405,Emma,Cohen,1936-01-09,F,white,Worcester,Worcester,MA,78000,Aetna,chronic kidney disease
+P0406,James,Johnson,1969-08-16,M,white,Worcester,Worcester,MA,122000,No Insurance,depression
+P0407,Mateo,Price,1968-09-03,M,white,Quincy,Norfolk,MA,137000,UnitedHealthcare,obesity
+P0408,Chloe,Garcia,2006-09-13,F,hispanic,Springfield,Hampden,MA,90000,Medicare,heart failure
+P0409,Emma,Patel,2014-08-29,F,white,Worcester,Worcester,MA,34000,Blue Cross,hypertension
+P0410,Hugo,Reyes,1998-03-16,M,white,Pittsfield,Berkshire,MA,182000,Medicare,depression
+P0411,Aisha,Murphy,1953-06-10,F,other,Boston,Suffolk,MA,119000,Aetna,none
+P0412,Raj,Lopez,1943-08-09,M,white,Lowell,Middlesex,MA,161000,Blue Cross,hyperlipidemia
+P0413,Nora,Smith,1973-05-12,F,white,Boston,Suffolk,MA,184000,Blue Cross,hyperlipidemia
+P0414,Maria,Kim,1950-04-29,F,black,Worcester,Worcester,MA,35000,Blue Cross,hypertension
+P0415,Leo,Reyes,2015-04-14,M,black,Quincy,Norfolk,MA,38000,Blue Cross,depression
+P0416,Elena,Rivera,1951-09-27,F,white,Brockton,Plymouth,MA,82000,Blue Cross,heart failure
+P0417,Ruth,Johnson,1948-07-23,F,asian,Lowell,Middlesex,MA,185000,Medicare,none
+P0418,Henry,Ward,1955-05-31,M,black,New Bedford,Bristol,MA,114000,UnitedHealthcare,depression
+P0419,Noah,Reyes,1961-10-23,M,white,Pittsfield,Berkshire,MA,197000,Medicare,obesity
+P0420,Chloe,Patel,1949-12-30,F,other,Worcester,Worcester,MA,64000,Medicare,depression
+P0421,Grace,Brown,2009-10-31,F,black,Quincy,Norfolk,MA,96000,UnitedHealthcare,none
+P0422,Elena,Price,1970-08-25,F,black,Worcester,Worcester,MA,85000,Blue Cross,type 2 diabetes
+P0423,Henry,Brown,1948-04-18,M,black,Worcester,Worcester,MA,164000,Aetna,hypertension
+P0424,Aisha,Chen,2012-10-28,F,white,Pittsfield,Berkshire,MA,103000,UnitedHealthcare,heart failure
+P0425,Victor,Ross,1977-06-09,M,white,Lynn,Essex,MA,85000,Medicaid,obesity
+P0426,Samuel,Murphy,1996-12-12,M,white,Boston,Suffolk,MA,136000,UnitedHealthcare,chronic kidney disease
+P0427,Priya,Chen,1960-02-25,F,hispanic,Brockton,Plymouth,MA,193000,Aetna,COPD
+P0428,Chloe,Murphy,1959-03-04,F,asian,Lowell,Middlesex,MA,169000,Blue Cross,COPD
+P0429,Henry,Reyes,2003-02-20,M,white,Cambridge,Middlesex,MA,110000,UnitedHealthcare,osteoarthritis
+P0430,Priya,Hughes,1971-03-11,F,white,Worcester,Worcester,MA,149000,UnitedHealthcare,type 2 diabetes
+P0431,Grace,Johnson,1957-05-20,F,white,Cambridge,Middlesex,MA,27000,UnitedHealthcare,none
+P0432,Nora,Cohen,1980-04-25,F,white,Lowell,Middlesex,MA,46000,Aetna,COPD
+P0433,Hugo,Cohen,1950-12-07,M,other,Lynn,Essex,MA,136000,Blue Cross,chronic kidney disease
+P0434,Ethan,Garcia,1960-07-29,M,white,Springfield,Hampden,MA,27000,Medicare,obesity
+P0435,Rosa,Kim,1959-02-21,F,black,Cambridge,Middlesex,MA,146000,Medicare,none
+P0436,Mei,Patel,1988-12-06,F,asian,Lynn,Essex,MA,72000,Medicaid,none
+P0437,Henry,Okafor,2011-05-26,M,white,Lowell,Middlesex,MA,79000,Medicare,heart failure
+P0438,Wei,Smith,1980-11-21,M,other,Pittsfield,Berkshire,MA,110000,Blue Cross,obesity
+P0439,Wei,Reyes,1940-09-22,M,white,Lowell,Middlesex,MA,85000,Blue Cross,heart failure
+P0440,Liam,Brown,1981-05-29,M,asian,Lowell,Middlesex,MA,29000,UnitedHealthcare,none
+P0441,Daniel,Smith,1993-10-19,M,white,Brockton,Plymouth,MA,90000,Medicaid,depression
+P0442,Robert,Ward,1998-07-11,M,other,Quincy,Norfolk,MA,63000,Medicaid,none
+P0443,Ava,Rivera,1980-07-06,F,white,New Bedford,Bristol,MA,58000,UnitedHealthcare,osteoarthritis
+P0444,Aisha,Reyes,1946-06-24,F,asian,Lowell,Middlesex,MA,158000,Aetna,asthma
+P0445,Noah,Rivera,1955-01-14,M,asian,Worcester,Worcester,MA,93000,Medicaid,chronic kidney disease
+P0446,Victor,Chen,1976-08-09,M,hispanic,Lowell,Middlesex,MA,135000,Medicare,none
+P0447,Grace,Hughes,1945-10-01,F,hispanic,Lynn,Essex,MA,112000,Blue Cross,depression
+P0448,Mei,Kim,1965-09-28,F,white,Springfield,Hampden,MA,160000,UnitedHealthcare,hyperlipidemia
+P0449,Olivia,Garcia,1978-09-29,F,white,Brockton,Plymouth,MA,60000,Medicaid,type 2 diabetes
+P0450,Hannah,Kim,2003-04-16,F,asian,Lynn,Essex,MA,162000,Aetna,hyperlipidemia
+P0451,Ivy,Silva,1991-11-01,F,white,Springfield,Hampden,MA,124000,No Insurance,depression
+P0452,Leah,Kim,2000-07-20,F,white,Boston,Suffolk,MA,18000,UnitedHealthcare,none
+P0453,Maria,Lopez,1955-04-20,F,black,Boston,Suffolk,MA,103000,Medicaid,hypertension
+P0454,Victor,Chen,1949-12-25,M,white,New Bedford,Bristol,MA,26000,Medicaid,heart failure
+P0455,Hugo,Hughes,1965-04-23,M,white,New Bedford,Bristol,MA,190000,No Insurance,chronic kidney disease
+P0456,Liam,Patel,2016-05-12,M,hispanic,Brockton,Plymouth,MA,118000,Medicare,COPD
+P0457,Maria,Ward,1980-04-09,F,white,Cambridge,Middlesex,MA,108000,Aetna,none
+P0458,Hannah,Price,1990-11-26,F,white,Quincy,Norfolk,MA,27000,Aetna,none
+P0459,Aisha,Silva,1974-11-11,F,white,Boston,Suffolk,MA,155000,Medicaid,none
+P0460,Maria,Chen,1972-10-04,F,black,Cambridge,Middlesex,MA,184000,Blue Cross,obesity
+P0461,Aisha,Hughes,1999-06-26,F,black,Quincy,Norfolk,MA,87000,Medicare,hypertension
+P0462,Hugo,Kim,2004-10-17,M,white,Cambridge,Middlesex,MA,148000,No Insurance,chronic kidney disease
+P0463,Omar,Johnson,1984-03-05,M,white,Lowell,Middlesex,MA,68000,Aetna,hyperlipidemia
+P0464,James,Smith,1995-04-04,M,white,Cambridge,Middlesex,MA,43000,UnitedHealthcare,none
+P0465,Carlos,Hughes,1941-09-25,M,asian,Springfield,Hampden,MA,40000,UnitedHealthcare,none
+P0466,Priya,Walker,1976-08-26,F,white,Lynn,Essex,MA,59000,UnitedHealthcare,heart failure
+P0467,Henry,Nguyen,1943-07-10,M,hispanic,Brockton,Plymouth,MA,26000,Medicare,asthma
+P0468,Nora,Cohen,1990-10-14,F,white,Brockton,Plymouth,MA,38000,Medicaid,chronic kidney disease
+P0469,Elena,Okafor,1975-12-16,F,white,Worcester,Worcester,MA,113000,Aetna,hyperlipidemia
+P0470,Wei,Brown,1997-06-16,M,asian,Springfield,Hampden,MA,55000,Medicare,obesity
+P0471,Jamal,Patel,1989-11-04,M,white,Pittsfield,Berkshire,MA,106000,Blue Cross,none
+P0472,Ava,Nguyen,2014-08-18,F,white,Lynn,Essex,MA,26000,Medicare,none
+P0473,Owen,Ward,1999-12-07,M,black,Boston,Suffolk,MA,186000,UnitedHealthcare,osteoarthritis
+P0474,Rosa,Reyes,1966-01-07,F,black,Quincy,Norfolk,MA,179000,Medicaid,osteoarthritis
+P0475,Olivia,Hughes,2011-02-25,F,white,Boston,Suffolk,MA,141000,UnitedHealthcare,hypertension
+P0476,Noah,Murphy,1959-12-15,M,white,Brockton,Plymouth,MA,72000,Blue Cross,depression
+P0477,Carlos,Cohen,1974-11-07,M,asian,Cambridge,Middlesex,MA,129000,Medicare,hyperlipidemia
+P0478,Wei,Reyes,2001-11-09,M,black,Brockton,Plymouth,MA,41000,Medicaid,type 2 diabetes
+P0479,Ivy,Ross,1992-03-12,F,white,Worcester,Worcester,MA,145000,Blue Cross,none
+P0480,Mateo,Johnson,2008-04-04,M,white,Brockton,Plymouth,MA,131000,Medicaid,none
+P0481,Jamal,Nguyen,1943-09-28,M,asian,Brockton,Plymouth,MA,71000,Medicare,chronic kidney disease
+P0482,Owen,Rivera,1997-12-27,M,white,New Bedford,Bristol,MA,57000,Blue Cross,none
+P0483,Ethan,Ross,1952-07-29,M,white,Worcester,Worcester,MA,115000,Medicare,none
+P0484,Aisha,Silva,1939-03-04,F,hispanic,Brockton,Plymouth,MA,187000,Blue Cross,none
+P0485,Victor,Hughes,1947-01-29,M,other,Lynn,Essex,MA,16000,Blue Cross,type 2 diabetes
+P0486,Leo,Hughes,2005-01-27,M,hispanic,Pittsfield,Berkshire,MA,60000,Aetna,asthma
+P0487,Elena,Ross,1989-05-19,F,hispanic,Worcester,Worcester,MA,144000,UnitedHealthcare,depression
+P0488,Elena,Murphy,1961-05-23,F,white,Lowell,Middlesex,MA,49000,Medicare,obesity
+P0489,Lucas,Price,1991-10-02,M,white,New Bedford,Bristol,MA,68000,Blue Cross,heart failure
+P0490,Omar,Hughes,1983-09-02,M,black,Springfield,Hampden,MA,97000,Aetna,none
+P0491,Leo,Ward,1986-03-12,M,hispanic,New Bedford,Bristol,MA,196000,Medicaid,none
+P0492,James,Hughes,1944-07-20,M,white,Quincy,Norfolk,MA,52000,Medicare,type 2 diabetes
+P0493,Olivia,Chen,1996-04-23,F,white,Lowell,Middlesex,MA,30000,Aetna,heart failure
+P0494,Linda,Rivera,2008-01-12,F,white,New Bedford,Bristol,MA,172000,UnitedHealthcare,none
+P0495,Elena,Lopez,1980-11-01,F,asian,New Bedford,Bristol,MA,193000,Medicaid,none
+P0496,Elena,Silva,2005-09-14,F,other,Quincy,Norfolk,MA,95000,No Insurance,type 2 diabetes
+P0497,Grace,Ross,2012-12-12,F,asian,Lowell,Middlesex,MA,128000,UnitedHealthcare,none
+P0498,Isaac,Ross,1952-08-16,M,asian,Pittsfield,Berkshire,MA,64000,Medicaid,asthma
+P0499,Olivia,Hughes,1945-09-15,F,white,Springfield,Hampden,MA,124000,Medicaid,heart failure
+P0500,Ruth,Walker,1935-07-04,F,white,Springfield,Hampden,MA,196000,No Insurance,type 2 diabetes
