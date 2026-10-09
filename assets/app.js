@@ -1,6 +1,11 @@
 // Step navigation (hash-based) and copy-to-clipboard for code blocks.
 (function () {
   const steps = Array.from(document.querySelectorAll('section.step'));
+  // Optional extensions follow the core wrap-up in both navigation and the DOM.
+  steps.sort(function (left, right) {
+    return Number(left.dataset.optional === 'true') - Number(right.dataset.optional === 'true');
+  });
+  steps.forEach(function (section) { section.parentNode.appendChild(section); });
   const nav = document.querySelector('nav.steps');
   const list = nav.querySelector('ol');
 
@@ -12,7 +17,7 @@
     a.textContent = s.dataset.title;
     const mins = document.createElement('span');
     mins.className = 'mins';
-    mins.textContent = s.dataset.mins + ' min';
+    mins.textContent = (s.dataset.optional === 'true' ? '+' : '') + s.dataset.mins + ' min';
     a.appendChild(mins);
     li.appendChild(a);
     list.appendChild(li);
@@ -59,10 +64,14 @@
     btn.textContent = 'Copy';
     btn.addEventListener('click', function () {
       const text = block.querySelector('pre').innerText;
+      if (!navigator.clipboard) {
+        btn.textContent = 'Select text to copy';
+        return;
+      }
       navigator.clipboard.writeText(text).then(function () {
         btn.textContent = 'Copied!';
         setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
-      });
+      }).catch(function () { btn.textContent = 'Select text to copy'; });
     });
     block.appendChild(btn);
   });

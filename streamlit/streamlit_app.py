@@ -4,11 +4,11 @@ import streamlit as st
 from snowflake.snowpark.context import get_active_session
 
 st.title("Encounter Explorer")
-st.caption("Built on DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY")
+st.caption("Synthetic teaching data | DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY")
 
 session = get_active_session()  # already logged in - no password needed
 
-# Load the view you created in Module 4 into a pandas DataFrame.
+# Load the view from SQL Basics into a pandas DataFrame.
 df = session.table("DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY").to_pandas()
 
 # Sidebar filters
@@ -31,7 +31,7 @@ st.bar_chart(df.groupby("ENCOUNTER_CLASS")["TOTAL_COST"].sum())
 st.subheader("Most expensive encounters")
 st.dataframe(df.sort_values("TOTAL_COST", ascending=False).head(20), use_container_width=True)
 
-# Module 6, step 4: clinical notes search (parameterized - never paste user input into SQL)
+# Clinical notes search is separate from the encounter filters above.
 st.subheader("Search clinical notes")
 term = st.text_input("Find notes containing", "shortness of breath")
 if term:
@@ -43,5 +43,5 @@ if term:
            LIMIT 50""",
         params=[f"%{term}%"],
     ).to_pandas()
-    st.write(f"{len(notes)} notes found (showing up to 50)")
+    st.write(f"Showing {len(notes)} matching notes (maximum 50; not a total count)")
     st.dataframe(notes, use_container_width=True)
