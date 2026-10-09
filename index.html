@@ -47,12 +47,13 @@
   <h2>What you'll do</h2>
   <div class="cards">
     <div class="card"><h3>1. Find your way around</h3>Tour Snowsight, the Snowflake web interface.</div>
-    <div class="card"><h3>2. Learn the vocabulary</h3>Warehouses, databases, schemas, roles. These are the words you'll hear every day.</div>
-    <div class="card"><h3>3. Load data</h3>Upload three CSV files into tables.</div>
-    <div class="card"><h3>4. Ask questions with SQL</h3>Filter, sort, total and join your data, then try some challenges on your own.</div>
-    <div class="card"><h3>5. Undo a mistake</h3>Use Time Travel to recover changed and deleted data.</div>
-    <div class="card"><h3>6. Build an app</h3>Make an interactive Streamlit app, using only Python.</div>
-    <div class="card"><h3>7. Control access</h3>Create a role for the care team and decide exactly what it can see.</div>
+    <div class="card"><h3>2. Meet CoCo</h3>Try Cortex Code right inside Snowsight: ask questions in plain English.</div>
+    <div class="card"><h3>3. Learn the vocabulary</h3>Warehouses, databases, schemas, roles. These are the words you'll hear every day.</div>
+    <div class="card"><h3>4. Load data</h3>Upload three CSV files into tables.</div>
+    <div class="card"><h3>5. Ask questions with SQL</h3>Filter, sort, total and join your data, then try some challenges on your own.</div>
+    <div class="card"><h3>6. Undo a mistake</h3>Use Time Travel to recover changed and deleted data.</div>
+    <div class="card"><h3>7. Build an app</h3>Make an interactive Streamlit app, using only Python.</div>
+    <div class="card"><h3>8. Control access</h3>Create a role for the care team and decide exactly what it can see.</div>
   </div>
 
   <h2>Before you start</h2>
@@ -71,7 +72,7 @@
 </section>
 
 <!-- ============================ 1. TRIAL + TOUR ============================ -->
-<section class="step" id="tour" data-title="Sign Up and Tour Snowsight" data-mins="10">
+<section class="step" id="tour" data-title="Sign Up and Tour Snowsight" data-mins="7">
   <h1>Sign Up and Tour Snowsight</h1>
 
   <h2>Create your free trial account</h2>
@@ -110,7 +111,65 @@
   </ol>
 </section>
 
-<!-- ============================ 2. CONCEPTS ============================ -->
+<!-- ============================ 2. COCO ============================ -->
+<section class="step" id="coco" data-title="Meet CoCo" data-mins="8">
+  <h1>Meet CoCo: Your AI Assistant in Snowsight</h1>
+  <p><strong>Cortex Code</strong> (CoCo) is an AI assistant built into Snowsight. You can ask it questions in plain English
+    and it can write SQL, explain results, suggest fixes, and help you learn.</p>
+  <div class="tip"><strong>Check access before the workshop</strong>
+    Use your existing workshop account; you do not need another trial. CoCo requires the appropriate database roles,
+    enabled AI features, cross-region inference, and a non-zero daily credit limit. Self-service trials have AI disabled by default;
+    an administrator must add a credit card to enable it. Ask your facilitator to confirm access beforehand.
+    If unavailable, follow the copyable SQL examples and watch the facilitator demonstrate CoCo.
+    See <a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-snowsight">CoCo access requirements</a>.</div>
+
+  <h2>1. Open CoCo</h2>
+  <ol>
+    <li>Look for the <strong>CoCo icon</strong> in the bottom-right corner of Snowsight.</li>
+    <li>Click it to open the CoCo chat panel.</li>
+  </ol>
+  <div class="why"><strong>Why this matters</strong>
+    You don't need to memorize SQL syntax. CoCo can write queries for you, explain what they do, and help when you get stuck.
+    It's especially useful when you're learning, because you can ask "why" and get an answer in plain language.</div>
+
+  <h2>2. Ask it something</h2>
+  <p>Try typing one of these into the CoCo chat:</p>
+  <ul>
+    <li><code>What databases exist in my account?</code></li>
+    <li><code>Explain the SQL for creating a warehouse called LAB_WH. Do not execute it.</code></li>
+    <li><code>What's the difference between a database and a schema?</code></li>
+  </ul>
+  <p>CoCo can provide SQL, explanations, and suggested file edits. Review suggested changes before applying them. Copy generated SQL into your Workspace SQL file when you want to run it yourself.</p>
+
+  <h2>3. Use it throughout the lab</h2>
+  <p>Keep CoCo open alongside your Workspace as you work. Include relevant code, error messages, and fully qualified table names in your prompts:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>When you're in</th><th>Try asking CoCo</th></tr></thead>
+    <tbody>
+      <tr><td>A SQL file (Module 4)</td><td><code>Explain this query</code> or <code>Why am I getting this error?</code></td></tr>
+      <tr><td>The query profile (Module 4)</td><td><code>Why is this query slow?</code></td></tr>
+      <tr><td>A Streamlit app (Module 7)</td><td><code>Add a pie chart showing cost by payer</code></td></tr>
+      <tr><td>Anywhere</td><td><code>Write a query that shows the top 10 patients by total cost</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tip"><strong>Good to know</strong>
+    CoCo can execute multi-step tasks, not just suggest SQL. It starts with your default role, which can differ from the SQL editor's role.
+    For this introduction, choose <strong>+ → Restrict this chat → Read-only</strong> and ask for explanations or draft SQL.
+    Review generated queries and suggested edits; AI output can be incorrect.</div>
+
+  <h2>4. Try a challenge with CoCo</h2>
+  <p>After <a href="#load">Set Up and Load Data</a>, return here and try this:</p>
+  <ol>
+    <li>Open CoCo from a SQL file.</li>
+    <li>Type: <code>Draft, but do not execute, a query joining DAY0_LAB.HEALTHCARE.ENCOUNTERS to DAY0_LAB.HEALTHCARE.PATIENTS by PATIENT_ID to show total encounter cost by city, sorted highest first</code></li>
+    <li>Review the SQL it writes. Check the join and totals, then copy it into your Workspace SQL file and run it.</li>
+    <li>Now ask: <code>Can you add a column for the number of patients in each city?</code></li>
+  </ol>
+  <p>CoCo remembers the conversation, so it modifies the previous query rather than starting over.</p>
+</section>
+
+<!-- ============================ 3. CONCEPTS ============================ -->
 <section class="step" id="concepts" data-title="Core Concepts" data-mins="10">
   <h1>Core Concepts</h1>
   <p>There are only five ideas you need to start. Everything else builds on them.</p>
@@ -336,7 +395,7 @@ SELECT * FROM ENCOUNTER_SUMMARY LIMIT 10;</pre></div>
 </section>
 
 <!-- ============================ 4b. CHALLENGES ============================ -->
-<section class="step" id="challenges" data-title="SQL Challenges" data-mins="10">
+<section class="step" id="challenges" data-title="SQL Challenges" data-mins="8">
   <h1>SQL Challenges</h1>
   <p>Now it's your turn. Try each question on your own first, then click <strong>Show answer</strong> to compare.
     There's usually more than one correct way to write it.</p>
@@ -440,7 +499,7 @@ SELECT COUNT(*) FROM CLINICAL_NOTES;   -- 1,500 again</pre></div>
 </section>
 
 <!-- ============================ 6. STREAMLIT ============================ -->
-<section class="step" id="streamlit" data-title="Your First Streamlit App" data-mins="15">
+<section class="step" id="streamlit" data-title="Your First Streamlit App" data-mins="12">
   <h1>Your First Streamlit App</h1>
   <p><strong>Streamlit</strong> turns a short Python script into an interactive web app. In Snowflake, the app runs right next to your data,
     so there are no servers, passwords or files to move.</p>
