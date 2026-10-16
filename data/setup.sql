@@ -1,10 +1,26 @@
 -- Snowflake Foundations: run this file in your private snowcamp workspace.
--- Setup ONLY: safe to rerun; does not replace or load existing tables.
+-- Setup ONLY: does not replace or load existing tables.
+-- Reruns reapply the lab account's Streamlit pool and your default warehouse.
 -- Use only an isolated workshop account/database, not production.
-USE ROLE SYSADMIN;
+-- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.
 CREATE WAREHOUSE IF NOT EXISTS LAB_WH
   WAREHOUSE_SIZE = 'XSMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE
   INITIALLY_SUSPENDED = TRUE;
+
+-- Small CPU nodes for Streamlit; allow a preview and an optional deployed app.
+CREATE COMPUTE POOL IF NOT EXISTS LAB_STREAMLIT_POOL
+  MIN_NODES = 1
+  MAX_NODES = 2
+  INSTANCE_FAMILY = CPU_X64_XS
+  AUTO_RESUME = TRUE
+  INITIALLY_SUSPENDED = TRUE
+  AUTO_SUSPEND_SECS = 60;
+
+-- Workshop account only: changes the default pool for new Streamlit apps.
+ALTER ACCOUNT SET DEFAULT_STREAMLIT_COMPUTE_POOL = 'LAB_STREAMLIT_POOL';
+-- Omitting a user name changes only the currently signed-in user's default.
+ALTER USER SET DEFAULT_WAREHOUSE = 'LAB_WH';
+
 CREATE DATABASE IF NOT EXISTS DAY0_LAB;
 CREATE SCHEMA IF NOT EXISTS DAY0_LAB.HEALTHCARE;
 USE WAREHOUSE LAB_WH;
@@ -29,5 +45,7 @@ CREATE TABLE IF NOT EXISTS CLINICAL_NOTES (
   NOTE_ID VARCHAR, PATIENT_ID VARCHAR, ENCOUNTER_ID VARCHAR,
   NOTE_DATE DATE, NOTE_TYPE VARCHAR, NOTE_TEXT VARCHAR
 );
+DESCRIBE COMPUTE POOL LAB_STREAMLIT_POOL;
+SHOW PARAMETERS LIKE 'DEFAULT_STREAMLIT_COMPUTE_POOL' IN ACCOUNT;
 SHOW TABLES IN SCHEMA DAY0_LAB.HEALTHCARE;
 -- Next: upload the three CSVs to LAB_DATA in Snowsight, then run load_data.sql.

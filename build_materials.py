@@ -1,4 +1,4 @@
-"""Build exact-data SQL recovery and the downloadable workshop bundle locally."""
+"""Build recovery SQL, the data-only ZIP, and the fallback materials ZIP locally."""
 import csv
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
@@ -18,7 +18,7 @@ def main():
         "-- Run the entire file. The anonymous SQL block rolls back all three",
         "-- replacements if a load fails. Review the error before retrying.",
         "-- Do not upload/load CSVs afterwards: this is an alternative loading path.",
-        "USE ROLE SYSADMIN;",
+        "-- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.",
         "USE WAREHOUSE LAB_WH;",
         "USE SCHEMA DAY0_LAB.HEALTHCARE;",
         "EXECUTE IMMEDIATE $$",
@@ -48,10 +48,14 @@ def main():
     files += [f"data/{name}" for name in (
         "patients.csv", "encounters.csv", "clinical_notes.csv", "setup.sql", "load_data.sql", "fallback_data.sql"
     )]
+    with ZipFile(ROOT / "snowcamp-data.zip", "w", compression=ZIP_DEFLATED) as archive:
+        for name in ("patients.csv", "encounters.csv", "clinical_notes.csv"):
+            archive.write(ROOT / "data" / name, name)
+    files.append("snowcamp-data.zip")
     with ZipFile(ROOT / "snowcamp-materials.zip", "w", compression=ZIP_DEFLATED) as archive:
         for relative in files:
             archive.write(ROOT / relative, relative)
-    print(f"Built exact-data recovery SQL and bundle ({len(files)} files).")
+    print(f"Built recovery SQL, data-only ZIP (3 CSVs), and fallback bundle ({len(files)} files).")
 
 
 if __name__ == "__main__":

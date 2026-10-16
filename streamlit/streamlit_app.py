@@ -1,15 +1,14 @@
 # Day 0 Lab - My First Streamlit App
-# Paste this into a new Streamlit app in Snowsight (Projects > Streamlit).
+# Reference: paste into the app created with Workspaces > + Add new > Streamlit app.
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 
 st.title("Encounter Explorer")
 st.caption("Synthetic teaching data | DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY")
 
-session = get_active_session()  # already logged in - no password needed
+conn = st.connection("snowflake")  # Snowflake supplies the credentials
 
-# Load the view from SQL Basics into a pandas DataFrame.
-df = session.table("DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY").to_pandas()
+# Cache the view for 60 seconds, then apply sidebar filters locally.
+df = conn.query("SELECT * FROM DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY", ttl=60)
 
 # Sidebar filters
 cities = st.sidebar.multiselect("City", sorted(df["CITY"].unique()))
@@ -29,19 +28,20 @@ st.subheader("Total cost by encounter class")
 st.bar_chart(df.groupby("ENCOUNTER_CLASS")["TOTAL_COST"].sum())
 
 st.subheader("Most expensive encounters")
-st.dataframe(df.sort_values("TOTAL_COST", ascending=False).head(20), use_container_width=True)
+st.dataframe(df.sort_values("TOTAL_COST", ascending=False).head(20), width="stretch")
 
 # Clinical notes search is separate from the encounter filters above.
 st.subheader("Search clinical notes")
 term = st.text_input("Find notes containing", "shortness of breath")
 if term:
-    notes = session.sql(
+    notes = conn.query(
         """SELECT NOTE_DATE, PATIENT_ID, NOTE_TEXT
            FROM DAY0_LAB.HEALTHCARE.CLINICAL_NOTES
            WHERE NOTE_TEXT ILIKE ?
            ORDER BY NOTE_DATE DESC
            LIMIT 50""",
         params=[f"%{term}%"],
-    ).to_pandas()
+        ttl=60,
+    )
     st.write(f"Showing {len(notes)} matching notes (maximum 50; not a total count)")
-    st.dataframe(notes, use_container_width=True)
+    st.dataframe(notes, width="stretch")

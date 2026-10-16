@@ -4,7 +4,7 @@
 -- Run the entire file. The anonymous SQL block rolls back all three
 -- replacements if a load fails. Review the error before retrying.
 -- Do not upload/load CSVs afterwards: this is an alternative loading path.
-USE ROLE SYSADMIN;
+-- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.
 USE WAREHOUSE LAB_WH;
 USE SCHEMA DAY0_LAB.HEALTHCARE;
 EXECUTE IMMEDIATE $$

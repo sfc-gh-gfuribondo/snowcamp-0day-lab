@@ -22,6 +22,13 @@ body {
   line-height: 1.6;
 }
 a { color: var(--sf-navy); }
+.download-btn {
+  display: inline-block; max-width: 100%; padding: 8px 16px;
+  margin: 4px 0; border-radius: 6px; text-decoration: none;
+  background: var(--sf-blue); color: #0f1e2e; font-weight: 700;
+}
+.download-btn:hover { text-decoration: underline; }
+.download-btn:focus-visible { outline: 2px solid var(--sf-navy); outline-offset: 3px; }
 img, svg { max-width: 100%; height: auto; }
 
 .topbar {
@@ -108,6 +115,14 @@ details summary {
   cursor: pointer; display: inline-block; padding: 4px 12px; border-radius: 6px;
   background: var(--panel); border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem;
 }
+
+.coco-practice {
+  margin-top: 32px; padding-top: 20px; border-top: 2px solid var(--sf-blue);
+}
+.coco-heading { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+.coco-heading span { min-width: 0; }
+.coco-heading .coco-icon { width: 40px; height: 44px; flex: 0 0 40px; }
+.coco-practice .code pre { padding-top: 42px; white-space: pre-wrap; overflow-wrap: anywhere; }
 
 .checklist { list-style: none; padding-left: 0; }
 .checklist li::before { content: "\2610  "; color: var(--sf-blue); }

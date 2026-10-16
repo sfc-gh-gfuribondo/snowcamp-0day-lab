@@ -1,5 +1,5 @@
 -- Run after setup.sql and uploading all three CSVs to the LAB_DATA stage root.
-USE ROLE SYSADMIN;
+-- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.
 USE WAREHOUSE LAB_WH;
 USE SCHEMA DAY0_LAB.HEALTHCARE;
 LIST @LAB_DATA;
