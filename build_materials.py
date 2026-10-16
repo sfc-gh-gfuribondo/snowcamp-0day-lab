@@ -44,7 +44,8 @@ def main():
         "UNION ALL SELECT 'CLINICAL_NOTES', COUNT(*) FROM CLINICAL_NOTES;",
     ])
     (ROOT / "data" / "fallback_data.sql").write_text("\n".join(lines) + "\n")
-    files = ["index.html", "assets/app.js", "assets/styles.css", "streamlit/streamlit_app.py"]
+    files = ["index.html", "assets/app.js", "assets/styles.css", "streamlit/streamlit_app.py",
+             "explore.sql", "time_travel.ipynb"]
     files += [f"data/{name}" for name in (
         "patients.csv", "encounters.csv", "clinical_notes.csv", "setup.sql", "load_data.sql", "fallback_data.sql"
     )]
