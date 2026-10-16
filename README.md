@@ -71,6 +71,14 @@ Run `data/setup.sql`, upload the CSVs to the `LAB_DATA` stage root through Snows
 - COPY normally skips unchanged files already loaded. Do not add `FORCE=TRUE` to retry a partially completed load.
 - Expected final counts are 500 patients, 5,000 encounters, and 1,500 notes.
 
+### Additional practice: let CoCo load a payer budget
+
+After verifying the three core tables, the Load Data module's **Try it with CoCo** section uses `data/payer_budget.csv` from the workspace to propose and, after approval, load a separate `DAY0_LAB.HEALTHCARE.PAYER_BUDGET` table. Start a new chat because the earlier read-only restriction cannot be relaxed in that chat. Keep `ACCOUNTADMIN` selected and retain write approvals. If the table exists, stop rather than overwrite it or append duplicates.
+
+The file contains 12 fictional month/plan records for January-April 2026, with budgeted claims in USD and member-month counts. One row represents one month and plan type; the figures are illustrative, not benchmarks or actuals linked to the encounter dataset. Check 12 rows, unique `(BUDGET_MONTH, PLAN_TYPE)` pairs, and total budgeted claims of **$1,980,000.00**. Only the full materials bundle includes this extra CSV; the data-only ZIP still contains exactly the original three files.
+
+Rehearse workspace-file access and loading with CoCo in the provided demo account before delivery. This is additional practice outside core timing; skip it if tools or permissions prevent the load. Do not add credentials or substitute invented rows. No downstream lab exercise depends on this table, and `fallback_data.sql` does not reset it.
+
 ### Recovery only
 
 `data/fallback_data.sql` is an alternative when uploads remain blocked or lab counts need resetting. Ask the facilitator first.
@@ -111,6 +119,12 @@ Day 0 uses `DAY0_LAB.HEALTHCARE` and three simplified teaching tables. The AI la
 
 ```text
 index.html                    Single-page lab guide
+guide.html                    Generated continuous developer-style edition
+build_guide.py                Reuse canonical modules in the alternate layout
+assets/guide-template.html    Alternate shell; keep lesson edits in index.html
+assets/guide.css              Isolated alternate design and responsive layout
+assets/guide.js               Contents navigation, active section, copy controls
+test_build_guide.py           Offline alternate generator regression tests
 explore.sql                   Prepopulated numbered SQL Basics exercises
 time_travel.ipynb              Step-by-step SQL-cell workspace recovery notebook
 assets/app.js                 Step navigation, optional-module ordering, copy buttons
@@ -118,12 +132,13 @@ assets/styles.css             Responsive light/dark styling
 data/patients.csv             Fictional patient data
 data/encounters.csv           Fictional encounter data
 data/clinical_notes.csv       Fictional clinical notes
+data/payer_budget.csv         12 fictional records for the extra CoCo loading exercise
 data/setup.sql                Infrastructure only
 data/load_data.sql            Load staged CSVs and check counts
 data/fallback_data.sql        Generated exact-data recovery script
 data/generate_data.py         Deterministic CSV generator (seed 42)
 streamlit/streamlit_app.py     Container-runtime reference app for workspace exercise
-build_materials.py            Generate recovery SQL and both download ZIPs
+build_materials.py            Generate alternate guide, recovery SQL, and both ZIPs
 verify_materials.py           Local consistency checks
 snowcamp-data.zip             Primary download: exactly three CSVs at ZIP root
 snowcamp-materials.zip        Fallback bundle: guide, code, CSVs, and data ZIP
@@ -137,11 +152,23 @@ Run these commands from the repository root. Python 3 is required for building/c
 ```bash
 python3 build_materials.py
 python3 verify_materials.py
+python3 test_build_guide.py
 node --check assets/app.js
+node --check assets/guide.js
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
 Open `http://127.0.0.1:8765/`. Check navigation, downloads, copy buttons, and the **Try it with CoCo** panels at desktop and narrow screen widths.
+
+### Alternate developer-guide edition
+
+Preview `http://127.0.0.1:8765/guide.html` for a continuous-reading version inspired by the [Snowflake developer guide layout](https://www.snowflake.com/en/developers/guides/ai-powered-video-publishing/): charcoal hero, large headings, a right-hand contents sidebar, and the same CoCo logos and visible practice sections. It does not replace the original step-by-step guide.
+
+`guide.html` is generated from `index.html` at build time, not fetched at runtime. All lesson text, SQL, prompts, links, and logos stay synchronized; only headings and presentation change. Optional extensions follow core wrap-up. Edit the layout in `assets/guide-template.html`, `assets/guide.css`, and `assets/guide.js`; do not hand-edit generated `guide.html`. No third-party scripts, fonts, trackers, or runtime network calls are used. Both guides remain readable from the full 17-file materials ZIP.
+
+The alternate supports native section links, keyboard focus, a compact mobile contents menu, clipboard-failure selection, and reduced motion. With JavaScript disabled, all instructions and navigation remain visible; copy text manually. Check both editions before publishing. Building locally does not commit, push, or change the live site.
+
+### Content maintenance
 
 - Edit the guide in `index.html`. Keep its SQL Basics examples consistent with `explore.sql`, notebook directions consistent with `time_travel.ipynb`, and Python examples consistent with `streamlit/streamlit_app.py`.
 - Only run `python3 data/generate_data.py` when intentionally regenerating the source CSVs.
@@ -151,6 +178,6 @@ Open `http://127.0.0.1:8765/`. Check navigation, downloads, copy buttons, and th
 
 ## Validation scope
 
-Local checks cover module timing, one CoCo practice panel per module, immediate Meet CoCo prompts, local links, Python syntax, parity between embedded and downloadable setup/exploration SQL and app code, notebook structure and recovery-cell order, compute-pool configuration and cleanup instructions, CSV relationships, recovery values, and ZIP contents. Browser checks have covered section navigation and narrow-width overflow. Selected earlier SQL examples were exercised in a demo account.
+Local checks cover parity between both guides (all modules, text, code, prompts, links, CoCo logos, and heading hierarchy), generator regression tests, module timing, one CoCo practice panel per module, immediate Meet CoCo prompts, local links, Python syntax, parity between embedded and downloadable setup/exploration SQL and app code, notebook structure and recovery-cell order, compute-pool configuration and cleanup instructions, CSV relationships, recovery values, and ZIP contents. Browser checks have covered section navigation and narrow-width overflow. Selected earlier SQL examples were exercised in a demo account.
 
-These checks do **not** establish that the complete revised lab has passed a participant-style Snowsight walkthrough. The new notebook and compute-pool/default-warehouse SQL have not been executed against Snowflake. Notebook SQL session continuity, expected-error recovery, pool provisioning, workspace preview, deployed Streamlit behavior, new-session/default-role consistency, and recovery transaction failure behavior still require verification in an authorized demo account. No new trial account is required for that verification.
+These checks do **not** establish that the complete revised lab has passed a participant-style Snowsight walkthrough. The new notebook and compute-pool/default-warehouse SQL have not been executed against Snowflake. CoCo workspace-CSV ingestion, notebook SQL session continuity, expected-error recovery, pool provisioning, workspace preview, deployed Streamlit behavior, new-session/default-role consistency, and recovery transaction failure behavior still require verification in an authorized demo account. No new trial account is required for that verification.

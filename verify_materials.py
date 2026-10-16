@@ -1,6 +1,8 @@
 """Local checks; does not connect to Snowflake or replace a Snowsight walkthrough."""
 import ast
 import csv
+from datetime import date
+from decimal import Decimal
 import json
 import re
 from html.parser import HTMLParser
@@ -25,6 +27,9 @@ class LabParser(HTMLParser):
         self.blocks = []
         self.in_metadata = False
         self.metadata = []
+        self.headings = []
+        self.section_links = {}
+        self.section_headings = {}
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -35,16 +40,24 @@ class LabParser(HTMLParser):
             self.sections.append(self.current)
             self.section_blocks[attrs['id']] = []
             self.section_text[attrs['id']] = []
+            self.section_links[attrs['id']] = []
+            self.section_headings[attrs['id']] = []
         if tag == 'div' and attrs.get('class') == 'coco-practice':
             self.current['practice'] += 1
-        if tag == 'h2' and attrs.get('class') == 'coco-heading':
+        if tag in ('h2', 'h3') and attrs.get('class') == 'coco-heading':
             self.current['practice_headings'] += 1
-        if tag == 'svg' and attrs.get('class') == 'coco-icon':
+        if tag == 'svg' and attrs.get('class') == 'coco-icon' and self.current:
             self.current['practice_icons'] += 1
             assert attrs.get('aria-hidden') == 'true'
+        if tag in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+            self.headings.append(int(tag[1]))
+            if self.current:
+                self.section_headings[self.current['id']].append(int(tag[1]))
         assert not (tag == 'details' and attrs.get('class') == 'stretch'), 'CoCo practice must not be collapsible'
         if tag in ('a', 'script', 'link'):
             self.links.append(attrs.get('href', attrs.get('src', '')))
+            if self.current:
+                self.section_links[self.current['id']].append(attrs.get('href', attrs.get('src', '')))
         if tag == 'a' and 'download' in attrs:
             self.downloads.append(attrs.get('href', ''))
         if tag == 'pre':
@@ -146,10 +159,50 @@ def check_notebook():
     assert 'Skip the next two cells' in ''.join(cells[positions['recover_from_clone'] - 1]['source'])
 
 
+def check_alternate(canonical, source):
+    from build_guide import GuideSource, render_guide
+    html = (ROOT / 'guide.html').read_text()
+    assert html == render_guide(source), 'Stale alternate guide; run build_materials.py'
+    alternate = LabParser()
+    alternate.feed(html)
+    expected_order = sorted(canonical.sections, key=lambda section: section.get('data-optional') == 'true')
+    assert [section['id'] for section in alternate.sections] == [section['id'] for section in expected_order]
+    assert len(alternate.ids) == len(set(alternate.ids)), 'Duplicate alternate guide anchors'
+    assert alternate.headings.count(1) == 1 and alternate.headings[0] == 1
+    assert all(right <= left + 1 for left, right in zip(alternate.headings, alternate.headings[1:])), 'Skipped heading level'
+    for section in alternate.sections:
+        identifier = section['id']
+        original = next(item for item in canonical.sections if item['id'] == identifier)
+        for key in ('data-title', 'data-mins', 'data-optional'):
+            assert section.get(key) == original.get(key), (identifier, key)
+        assert section['practice'] == section['practice_headings'] == section['practice_icons'] == 1
+        assert alternate.section_blocks[identifier] == canonical.section_blocks[identifier], f'Changed code/prompt: {identifier}'
+        assert alternate.section_text[identifier] == canonical.section_text[identifier], f'Changed lesson text: {identifier}'
+        assert alternate.section_links[identifier] == canonical.section_links[identifier], f'Changed lesson links: {identifier}'
+        assert alternate.section_headings[identifier] == [level + 1 for level in canonical.section_headings[identifier]]
+    for link in alternate.links:
+        if link.startswith('#'):
+            assert link[1:] in alternate.ids, link
+        elif link and not link.startswith(('https://', 'http://')):
+            assert (ROOT / link).exists(), link
+    for content in (source, html):
+        parsed = GuideSource()
+        parsed.feed(content)
+        if content == source:
+            original_logo = parsed.logo
+        else:
+            assert parsed.logo == original_logo, 'CoCo logo changed'
+    assert 'assets/app.js' not in html and 'assets/styles.css' not in html
+    assert 'assets/guide.css' in html and 'assets/guide.js' in html
+    assert not re.search(r'<(?:script|img|iframe)[^>]+(?:src|srcdoc)="https?://', html), 'No external runtime assets'
+    json.loads(''.join(alternate.metadata))
+
+
 def main():
     parser = LabParser()
     html = (ROOT / 'index.html').read_text()
     parser.feed(html)
+    check_alternate(parser, html)
     assert parser.downloads.count('snowcamp-data.zip') == 2, 'Data download missing from overview or load step'
     assert 'snowcamp-materials.zip' in parser.downloads, 'Manual-upload fallback missing'
     assert 'Do not select <em>From Git repository</em>' not in html, 'Stale workspace instruction'
@@ -222,13 +275,15 @@ def main():
     assert 'time_travel.ipynb' in travel_text and 'Do not use Run all' in travel_text
     assert 'NOTEBOOK' in travel_text and 'Suspend' in travel_text
     check_notebook()
-    json.loads(''.join(parser.metadata))
+    metadata = json.loads(''.join(parser.metadata))
+    assert {'type': 'file', 'path': 'data/payer_budget.csv', 'rows': 12} in metadata['dataSources']
+    assert 'Get the prepopulated SQL files' not in ''.join(parser.section_text['overview'])
     for link in parser.links:
         if link.startswith('#'):
             assert link[1:] in parser.ids, link
         elif link and not link.startswith(('https://', 'http://')):
             assert (ROOT / link).exists(), link
-    for source in ['build_materials.py', 'data/generate_data.py', 'streamlit/streamlit_app.py']:
+    for source in ['build_materials.py', 'build_guide.py', 'test_build_guide.py', 'data/generate_data.py', 'streamlit/streamlit_app.py']:
         ast.parse((ROOT / source).read_text())
     base_app = next(block for block in parser.blocks if block.startswith('import streamlit'))
     notes_app = next(block for block in parser.blocks if block.startswith('st.subheader("Search clinical notes")'))
@@ -253,6 +308,29 @@ def main():
         with (ROOT / 'data' / (name + '.csv')).open(newline='') as handle:
             data[name] = list(csv.DictReader(handle))
         assert len(data[name]) == count
+    with (ROOT / 'data/payer_budget.csv').open(newline='') as handle:
+        budget_reader = csv.DictReader(handle)
+        assert budget_reader.fieldnames == ['BUDGET_MONTH', 'PLAN_TYPE', 'BUDGETED_CLAIMS_USD', 'MEMBER_MONTHS']
+        budgets = list(budget_reader)
+    assert len(budgets) == 12
+    expected_budget_keys = {(f'2026-{month:02d}-01', plan) for month in range(1, 5)
+                            for plan in ('Commercial', 'Medicare Advantage', 'Medicaid')}
+    assert {(row['BUDGET_MONTH'], row['PLAN_TYPE']) for row in budgets} == expected_budget_keys
+    assert all(date.fromisoformat(row['BUDGET_MONTH']).day == 1 for row in budgets)
+    assert all(Decimal(row['BUDGETED_CLAIMS_USD']) > 0 and int(row['MEMBER_MONTHS']) > 0 for row in budgets)
+    assert sum(Decimal(row['BUDGETED_CLAIMS_USD']) for row in budgets) == Decimal('1980000.00')
+    budget_prompt = next(block for block in parser.section_blocks['load'] if block.startswith('Load data/payer_budget.csv'))
+    for requirement in ('DAY0_LAB.HEALTHCARE.PAYER_BUDGET', 'LAB_WH', 'ACCOUNTADMIN',
+                        'Wait for my approval', 'If the table already exists, stop',
+                        'do not invent data or request credentials', 'Do not change PATIENTS',
+                        'BUDGET_MONTH and PLAN_TYPE', 'total BUDGETED_CLAIMS_USD'):
+        assert requirement in budget_prompt, f'Missing budget-load guardrail: {requirement}'
+    assert 'data/payer_budget.csv' in parser.downloads
+    load_text = ''.join(parser.section_text['load'])
+    for checkpoint in ('new CoCo chat', '12 rows', '$1,980,000.00', 'Facilitator rehearsal required'):
+        assert checkpoint in load_text, f'Missing budget instruction: {checkpoint}'
+    for filename in ('setup.sql', 'load_data.sql', 'fallback_data.sql'):
+        assert 'PAYER_BUDGET' not in (ROOT / 'data' / filename).read_text().upper()
     patients = {row['PATIENT_ID'] for row in data['patients']}
     encounters = {row['ENCOUNTER_ID']: row for row in data['encounters']}
     assert len(patients) == 500 and len(encounters) == 5000
@@ -277,15 +355,16 @@ def main():
         expected = {
             'index.html', 'assets/app.js', 'assets/styles.css', 'streamlit/streamlit_app.py',
             'explore.sql', 'time_travel.ipynb', 'snowcamp-data.zip',
-            'data/patients.csv', 'data/encounters.csv', 'data/clinical_notes.csv',
+            'data/patients.csv', 'data/encounters.csv', 'data/clinical_notes.csv', 'data/payer_budget.csv',
             'data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql',
+            'guide.html', 'assets/guide.css', 'assets/guide.js',
         }
-        assert len(archive.namelist()) == len(expected) and set(archive.namelist()) == expected, 'Fallback bundle must contain all 13 files'
+        assert len(archive.namelist()) == len(expected) and set(archive.namelist()) == expected, 'Fallback bundle must contain all 17 files'
         assert archive.testzip() is None
         for name in archive.namelist():
             assert archive.read(name) == (ROOT / name).read_bytes(), f'Stale bundle: {name}'
-    print('PASS: 10 modules, 10 visible CoCo sections, immediate Meet CoCo prompts, 82 core minutes, delivery pacing, setup/explore SQL parity, 27-cell notebook structure and recovery order, links, Python, app-code parity, CSV relationships, exact-data recovery, Git onboarding, single-role workflow, compute cleanup, data-only ZIP, 13-file fallback ZIP parity.')
-    print('Not tested: Snowflake SQL compilation/execution, notebook import/runtime/session continuity, compute-pool provisioning, Snowsight UI, workspace preview, deployed Streamlit, new-session role consistency, or recovery transaction failure behavior.')
+    print('PASS: both guides match in all 10 modules, prompts, SQL, links, and CoCo logos; accessible heading order; immediate Meet CoCo prompts; 82 core minutes; setup/explore SQL parity; 27-cell notebook structure and recovery order; Python; app-code parity; CSV relationships; exact-data recovery; Git onboarding; single-role workflow; compute cleanup; data-only ZIP; payer-budget CSV and loading guardrails; 17-file fallback ZIP parity.')
+    print('Not tested: CoCo workspace-CSV ingestion, Snowflake SQL compilation/execution, notebook import/runtime/session continuity, compute-pool provisioning, Snowsight UI, workspace preview, deployed Streamlit, new-session role consistency, or recovery transaction failure behavior.')
 
 
 if __name__ == '__main__':
