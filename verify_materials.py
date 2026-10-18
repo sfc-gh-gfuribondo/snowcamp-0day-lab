@@ -208,7 +208,7 @@ def main():
     assert 'Do not select <em>From Git repository</em>' not in html, 'Stale workspace instruction'
     bootstrap = next(block for block in parser.blocks if 'CREATE API INTEGRATION' in block)
     assert 'SNOWCAMP_GIT_INTEGRATION' in bootstrap and 'git_https_api' in bootstrap
-    assert 'https://github.com/sfc-gh-gfuribondo/snowcamp-0day-lab' in bootstrap
+    assert "API_ALLOWED_PREFIXES = (\n    'https://github.com'\n  )" in bootstrap
     assert 'Public repository' in html and 'data/setup.sql' in html and 'data/load_data.sql' in html
     role_commands = re.compile(r'^\s*USE\s+(?:SECONDARY\s+)?ROLE[S]?\s+[^;]+;', re.I | re.M)
     guide_role_commands = role_commands.findall('\n'.join(parser.blocks))
