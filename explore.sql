@@ -6,6 +6,7 @@
 -- Read each result before continuing; do not use Run all for the lesson.
 
 -- 0. Set the context for this SQL file.
+USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE LAB_WH;
 USE SCHEMA DAY0_LAB.HEALTHCARE;
 

@@ -2,7 +2,8 @@
 -- Setup ONLY: does not replace or load existing tables.
 -- Reruns reapply the lab account's Streamlit pool and your default warehouse.
 -- Use only an isolated workshop account/database, not production.
--- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.
+-- Runs as ACCOUNTADMIN: the line below fixes the file's role, which can default to SYSADMIN.
+USE ROLE ACCOUNTADMIN;
 CREATE WAREHOUSE IF NOT EXISTS LAB_WH
   WAREHOUSE_SIZE = 'XSMALL' AUTO_SUSPEND = 60 AUTO_RESUME = TRUE
   INITIALLY_SUSPENDED = TRUE;
@@ -20,6 +21,8 @@ CREATE COMPUTE POOL IF NOT EXISTS LAB_STREAMLIT_POOL
 ALTER ACCOUNT SET DEFAULT_STREAMLIT_COMPUTE_POOL = 'LAB_STREAMLIT_POOL';
 -- Omitting a user name changes only the currently signed-in user's default.
 ALTER USER SET DEFAULT_WAREHOUSE = 'LAB_WH';
+-- Workshop account only: pre-selects a 15-minute idle timeout for new notebook services.
+ALTER ACCOUNT SET NOTEBOOK_VNEXT_IDLE_TIMEOUT_OPTIONS_MINUTES = '15,30,60';
 
 CREATE DATABASE IF NOT EXISTS DAY0_LAB;
 CREATE SCHEMA IF NOT EXISTS DAY0_LAB.HEALTHCARE;

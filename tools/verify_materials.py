@@ -212,21 +212,27 @@ def main():
     assert 'Public repository' in html and 'data/setup.sql' in html and 'data/load_data.sql' in html
     role_commands = re.compile(r'^\s*USE\s+(?:SECONDARY\s+)?ROLE[S]?\s+[^;]+;', re.I | re.M)
     guide_role_commands = role_commands.findall('\n'.join(parser.blocks))
-    assert [command.strip() for command in guide_role_commands] == ['USE ROLE ACCOUNTADMIN;'], 'Only the initial ACCOUNTADMIN selection belongs in the guide'
+    assert {command.strip() for command in guide_role_commands} == {'USE ROLE ACCOUNTADMIN;'}, 'Only ACCOUNTADMIN role statements belong in the guide'
     for source in ('data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql', 'data/teardown.sql', 'explore.sql'):
         sql = (ROOT / source).read_text()
-        assert not role_commands.search(sql), f'Unexpected role switch in {source}'
-        assert 'ACCOUNTADMIN' in sql, f'Missing initial-role prerequisite in {source}'
+        commands = [command.strip() for command in role_commands.findall(sql)]
+        assert commands == ['USE ROLE ACCOUNTADMIN;'], f'Expected exactly one USE ROLE ACCOUNTADMIN in {source}'
+        first = next(line.strip() for line in sql.splitlines()
+                     if line.strip() and not line.lstrip().startswith('--'))
+        assert first == 'USE ROLE ACCOUNTADMIN;', f'USE ROLE ACCOUNTADMIN must be the first statement in {source}'
     teardown = (ROOT / 'data/teardown.sql').read_text()
     for statement in ('DROP DATABASE IF EXISTS DAY0_LAB;', 'DROP ROLE IF EXISTS CARE_TEAM;',
                       'ALTER ACCOUNT UNSET DEFAULT_STREAMLIT_COMPUTE_POOL;',
                       'ALTER COMPUTE POOL IF EXISTS LAB_STREAMLIT_POOL STOP ALL;',
                       'DROP COMPUTE POOL IF EXISTS LAB_STREAMLIT_POOL;', 'ALTER USER UNSET DEFAULT_WAREHOUSE;',
-                      'DROP WAREHOUSE IF EXISTS LAB_WH;', 'DROP API INTEGRATION IF EXISTS SNOWCAMP_GIT_INTEGRATION;'):
+                      'DROP WAREHOUSE IF EXISTS LAB_WH;', 'DROP API INTEGRATION IF EXISTS SNOWCAMP_GIT_INTEGRATION;',
+                      'ALTER ACCOUNT UNSET NOTEBOOK_VNEXT_IDLE_TIMEOUT_OPTIONS_MINUTES;',
+                      'SHOW SERVICES OF TYPE NOTEBOOK;', 'DROP SERVICE IF EXISTS'):
         assert statement in teardown, f'Missing teardown step: {statement}'
     assert teardown.index('STOP ALL') < teardown.index('DROP COMPUTE POOL')
     assert 'data/teardown.sql' in parser.downloads
     setup_source = (ROOT / 'data/setup.sql').read_text()
+    assert "ALTER ACCOUNT SET NOTEBOOK_VNEXT_IDLE_TIMEOUT_OPTIONS_MINUTES = '15,30,60';" in setup_source
     setup_block = next(block for block in parser.blocks if 'CREATE COMPUTE POOL' in block)
     # The setup scripts use only full-line comments; compare code ignoring formatting.
     setup_versions = [' '.join(line.strip() for line in source.splitlines()
@@ -308,7 +314,7 @@ def main():
     assert all(any(keyword.arg == 'ttl' and isinstance(keyword.value, ast.Constant)
                    and keyword.value.value == 60 for keyword in call.keywords) for call in query_calls)
     assert 'WHERE NOTE_TEXT ILIKE ?' in app_source and 'params=' in app_source
-    assert '+ Add new → Streamlit app' in html
+    assert '+ Add new → Streamlit App' in html
     assert 'default compute pool' in html and 'private development app' in html
     assert 'Optional: deploy a Streamlit object from the workspace' in html
     assert 'warehouse-runtime' not in html and 'Warehouse runtime' not in html

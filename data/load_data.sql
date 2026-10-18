@@ -1,5 +1,6 @@
 -- Run after setup.sql and uploading all three CSVs to the LAB_DATA stage root.
--- Keep ACCOUNTADMIN selected from the initial lab setup; do not switch roles here.
+-- Runs as ACCOUNTADMIN: the line below fixes the file's role, which can default to SYSADMIN.
+USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE LAB_WH;
 USE SCHEMA DAY0_LAB.HEALTHCARE;
 LIST @LAB_DATA;
