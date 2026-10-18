@@ -213,10 +213,19 @@ def main():
     role_commands = re.compile(r'^\s*USE\s+(?:SECONDARY\s+)?ROLE[S]?\s+[^;]+;', re.I | re.M)
     guide_role_commands = role_commands.findall('\n'.join(parser.blocks))
     assert [command.strip() for command in guide_role_commands] == ['USE ROLE ACCOUNTADMIN;'], 'Only the initial ACCOUNTADMIN selection belongs in the guide'
-    for source in ('data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql', 'explore.sql'):
+    for source in ('data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql', 'data/teardown.sql', 'explore.sql'):
         sql = (ROOT / source).read_text()
         assert not role_commands.search(sql), f'Unexpected role switch in {source}'
         assert 'ACCOUNTADMIN' in sql, f'Missing initial-role prerequisite in {source}'
+    teardown = (ROOT / 'data/teardown.sql').read_text()
+    for statement in ('DROP DATABASE IF EXISTS DAY0_LAB;', 'DROP ROLE IF EXISTS CARE_TEAM;',
+                      'ALTER ACCOUNT UNSET DEFAULT_STREAMLIT_COMPUTE_POOL;',
+                      'ALTER COMPUTE POOL IF EXISTS LAB_STREAMLIT_POOL STOP ALL;',
+                      'DROP COMPUTE POOL IF EXISTS LAB_STREAMLIT_POOL;', 'ALTER USER UNSET DEFAULT_WAREHOUSE;',
+                      'DROP WAREHOUSE IF EXISTS LAB_WH;', 'DROP API INTEGRATION IF EXISTS SNOWCAMP_GIT_INTEGRATION;'):
+        assert statement in teardown, f'Missing teardown step: {statement}'
+    assert teardown.index('STOP ALL') < teardown.index('DROP COMPUTE POOL')
+    assert 'data/teardown.sql' in parser.downloads
     setup_source = (ROOT / 'data/setup.sql').read_text()
     setup_block = next(block for block in parser.blocks if 'CREATE COMPUTE POOL' in block)
     # The setup scripts use only full-line comments; compare code ignoring formatting.
@@ -356,14 +365,14 @@ def main():
             'index.html', 'assets/app.js', 'assets/styles.css', 'streamlit/streamlit_app.py',
             'explore.sql', 'time_travel.ipynb', 'snowcamp-data.zip',
             'data/patients.csv', 'data/encounters.csv', 'data/clinical_notes.csv', 'data/payer_budget.csv',
-            'data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql',
+            'data/setup.sql', 'data/load_data.sql', 'data/fallback_data.sql', 'data/teardown.sql',
             'guide.html', 'assets/guide.css', 'assets/guide.js',
         }
-        assert len(archive.namelist()) == len(expected) and set(archive.namelist()) == expected, 'Fallback bundle must contain all 17 files'
+        assert len(archive.namelist()) == len(expected) and set(archive.namelist()) == expected, 'Fallback bundle must contain all 18 files'
         assert archive.testzip() is None
         for name in archive.namelist():
             assert archive.read(name) == (ROOT / name).read_bytes(), f'Stale bundle: {name}'
-    print('PASS: both guides match in all 10 modules, prompts, SQL, links, and CoCo logos; accessible heading order; immediate Meet CoCo prompts; 82 core minutes; setup/explore SQL parity; 27-cell notebook structure and recovery order; Python; app-code parity; CSV relationships; exact-data recovery; Git onboarding; single-role workflow; compute cleanup; data-only ZIP; payer-budget CSV and loading guardrails; 17-file fallback ZIP parity.')
+    print('PASS: both guides match in all 10 modules, prompts, SQL, links, and CoCo logos; accessible heading order; immediate Meet CoCo prompts; 82 core minutes; setup/explore SQL parity; 27-cell notebook structure and recovery order; Python; app-code parity; CSV relationships; exact-data recovery; Git onboarding; single-role workflow; compute cleanup; data-only ZIP; payer-budget CSV and loading guardrails; teardown coverage; 18-file fallback ZIP parity.')
     print('Not tested: CoCo workspace-CSV ingestion, Snowflake SQL compilation/execution, notebook import/runtime/session continuity, compute-pool provisioning, Snowsight UI, workspace preview, deployed Streamlit, new-session role consistency, or recovery transaction failure behavior.')
 
 

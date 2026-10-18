@@ -727,6 +727,10 @@ SELECT CURRENT_ROLE();</pre></div>
   <div class="code"><pre>ALTER COMPUTE POOL LAB_STREAMLIT_POOL SUSPEND;</pre></div>
   <p>The pool is configured to auto-resume when used again, so reopening an app can restart it. Suspending <code>LAB_WH</code> alone does not suspend the pool. Your warehouse also pauses after 60 idle seconds; if it is still running, you can pause it now:</p>
   <div class="code"><pre>ALTER WAREHOUSE LAB_WH SUSPEND;</pre></div>
+  <details><summary>Optional: remove everything the lab created</summary>
+    <p>Only when you are completely finished, and only in your provided workshop account. First download any work you want to keep, close app tabs, and suspend the notebook service. Then open <code>data/teardown.sql</code> in <code>snowcamp</code> (or <a href="data/teardown.sql" download>download teardown.sql</a>) and run the entire file with <code>ACCOUNTADMIN</code> still selected.</p>
+    <p>It <strong>permanently drops</strong> <code>DAY0_LAB</code> (all tables, the view, stage files, and any deployed app), <code>CARE_TEAM</code>, <code>LAB_STREAMLIT_POOL</code>, <code>LAB_WH</code>, and <code>SNOWCAMP_GIT_INTEGRATION</code>, and clears the Streamlit pool and warehouse defaults set by setup. Afterward the <code>snowcamp</code> workspace can no longer sync from Git; delete it separately if wanted.</p>
+  </details>
 
   <h2>Next course: Cortex AI Lab</h2>
   <p>This is a <strong>skills prerequisite, not a shared-data continuation</strong> of the

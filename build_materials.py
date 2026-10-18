@@ -50,7 +50,7 @@ def main():
     files = ["index.html", "assets/app.js", "assets/styles.css", "streamlit/streamlit_app.py",
              "explore.sql", "time_travel.ipynb", "guide.html", "assets/guide.css", "assets/guide.js"]
     files += [f"data/{name}" for name in (
-        "patients.csv", "encounters.csv", "clinical_notes.csv", "payer_budget.csv", "setup.sql", "load_data.sql", "fallback_data.sql"
+        "patients.csv", "encounters.csv", "clinical_notes.csv", "payer_budget.csv", "setup.sql", "load_data.sql", "fallback_data.sql", "teardown.sql"
     )]
     with ZipFile(ROOT / "snowcamp-data.zip", "w", compression=ZIP_DEFLATED) as archive:
         for name in ("patients.csv", "encounters.csv", "clinical_notes.csv"):

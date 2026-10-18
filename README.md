@@ -87,6 +87,8 @@ Rehearse workspace-file access and loading with CoCo in the provided demo accoun
 
 ## Facilitator checklist
 
+After the session, participants or facilitators can run `data/teardown.sql` in the workshop account (with `ACCOUNTADMIN`) to permanently drop `DAY0_LAB`, `CARE_TEAM`, `LAB_STREAMLIT_POOL`, `LAB_WH`, and `SNOWCAMP_GIT_INTEGRATION`, and unset the account Streamlit pool and user warehouse defaults. Download work first and suspend notebook compute. The `snowcamp` workspace itself is deleted separately in Snowsight.
+
 Before the session:
 
 - Provide individual trial accounts, access details, and the three-day post-lab expiration information.
@@ -136,6 +138,7 @@ data/payer_budget.csv         12 fictional records for the extra CoCo loading ex
 data/setup.sql                Infrastructure only
 data/load_data.sql            Load staged CSVs and check counts
 data/fallback_data.sql        Generated exact-data recovery script
+data/teardown.sql             Removes all lab objects and setup defaults
 data/generate_data.py         Deterministic CSV generator (seed 42)
 streamlit/streamlit_app.py     Container-runtime reference app for workspace exercise
 build_materials.py            Generate alternate guide, recovery SQL, and both ZIPs
@@ -164,7 +167,7 @@ Open `http://127.0.0.1:8765/`. Check navigation, downloads, copy buttons, and th
 
 Preview `http://127.0.0.1:8765/guide.html` for a continuous-reading version inspired by the [Snowflake developer guide layout](https://www.snowflake.com/en/developers/guides/ai-powered-video-publishing/): charcoal hero, large headings, a right-hand contents sidebar, and the same CoCo logos and visible practice sections. It does not replace the original step-by-step guide.
 
-`guide.html` is generated from `index.html` at build time, not fetched at runtime. All lesson text, SQL, prompts, links, and logos stay synchronized; only headings and presentation change. Optional extensions follow core wrap-up. Edit the layout in `assets/guide-template.html`, `assets/guide.css`, and `assets/guide.js`; do not hand-edit generated `guide.html`. No third-party scripts, fonts, trackers, or runtime network calls are used. Both guides remain readable from the full 17-file materials ZIP.
+`guide.html` is generated from `index.html` at build time, not fetched at runtime. All lesson text, SQL, prompts, links, and logos stay synchronized; only headings and presentation change. Optional extensions follow core wrap-up. Edit the layout in `assets/guide-template.html`, `assets/guide.css`, and `assets/guide.js`; do not hand-edit generated `guide.html`. No third-party scripts, fonts, trackers, or runtime network calls are used. Both guides remain readable from the full 18-file materials ZIP.
 
 The alternate supports native section links, keyboard focus, a compact mobile contents menu, clipboard-failure selection, and reduced motion. With JavaScript disabled, all instructions and navigation remain visible; copy text manually. Check both editions before publishing. Building locally does not commit, push, or change the live site.
 
