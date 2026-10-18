@@ -3,7 +3,7 @@
 Deterministic (fixed seed) so every run produces identical files.
 All people, places-to-person mappings, and notes are fictional.
 
-    python3 data/generate_data.py
+    python3 tools/generate_data.py
 """
 import csv
 import random
@@ -14,7 +14,7 @@ SEED = 42
 N_PATIENTS = 500
 N_ENCOUNTERS = 5000
 N_NOTES = 1500
-OUT = Path(__file__).parent
+OUT = Path(__file__).resolve().parent.parent / "data"
 
 FIRST_F = ["Maria", "Linda", "Susan", "Aisha", "Mei", "Olivia", "Grace", "Rosa", "Hannah", "Priya",
            "Emma", "Nora", "Elena", "Fatima", "Chloe", "Ava", "Sofia", "Leah", "Ruth", "Ivy"]

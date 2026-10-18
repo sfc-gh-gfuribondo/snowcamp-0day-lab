@@ -5,7 +5,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 from build_guide import build_guide
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def sql_value(value):

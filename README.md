@@ -122,11 +122,11 @@ Day 0 uses `DAY0_LAB.HEALTHCARE` and three simplified teaching tables. The AI la
 ```text
 index.html                    Single-page lab guide
 guide.html                    Generated continuous developer-style edition
-build_guide.py                Reuse canonical modules in the alternate layout
-assets/guide-template.html    Alternate shell; keep lesson edits in index.html
+tools/build_guide.py          Reuse canonical modules in the alternate layout
+tools/guide-template.html     Alternate shell; keep lesson edits in index.html
 assets/guide.css              Isolated alternate design and responsive layout
 assets/guide.js               Contents navigation, active section, copy controls
-test_build_guide.py           Offline alternate generator regression tests
+tools/test_build_guide.py     Offline alternate generator regression tests
 explore.sql                   Prepopulated numbered SQL Basics exercises
 time_travel.ipynb              Step-by-step SQL-cell workspace recovery notebook
 assets/app.js                 Step navigation, optional-module ordering, copy buttons
@@ -139,10 +139,10 @@ data/setup.sql                Infrastructure only
 data/load_data.sql            Load staged CSVs and check counts
 data/fallback_data.sql        Generated exact-data recovery script
 data/teardown.sql             Removes all lab objects and setup defaults
-data/generate_data.py         Deterministic CSV generator (seed 42)
+tools/generate_data.py        Deterministic CSV generator (seed 42)
 streamlit/streamlit_app.py     Container-runtime reference app for workspace exercise
-build_materials.py            Generate alternate guide, recovery SQL, and both ZIPs
-verify_materials.py           Local consistency checks
+tools/build_materials.py      Generate alternate guide, recovery SQL, and both ZIPs
+tools/verify_materials.py     Local consistency checks
 snowcamp-data.zip             Primary download: exactly three CSVs at ZIP root
 snowcamp-materials.zip        Fallback bundle: guide, code, CSVs, and data ZIP
 .github/workflows/pages.yml   GitHub Pages deployment on pushes to main
@@ -153,9 +153,9 @@ snowcamp-materials.zip        Fallback bundle: guide, code, CSVs, and data ZIP
 Run these commands from the repository root. Python 3 is required for building/checking materials; Node.js is used only for the JavaScript syntax check.
 
 ```bash
-python3 build_materials.py
-python3 verify_materials.py
-python3 test_build_guide.py
+python3 tools/build_materials.py
+python3 tools/verify_materials.py
+python3 tools/test_build_guide.py
 node --check assets/app.js
 node --check assets/guide.js
 python3 -m http.server 8765 --bind 127.0.0.1
@@ -167,15 +167,15 @@ Open `http://127.0.0.1:8765/`. Check navigation, downloads, copy buttons, and th
 
 Preview `http://127.0.0.1:8765/guide.html` for a continuous-reading version inspired by the [Snowflake developer guide layout](https://www.snowflake.com/en/developers/guides/ai-powered-video-publishing/): charcoal hero, large headings, a right-hand contents sidebar, and the same CoCo logos and visible practice sections. It does not replace the original step-by-step guide.
 
-`guide.html` is generated from `index.html` at build time, not fetched at runtime. All lesson text, SQL, prompts, links, and logos stay synchronized; only headings and presentation change. Optional extensions follow core wrap-up. Edit the layout in `assets/guide-template.html`, `assets/guide.css`, and `assets/guide.js`; do not hand-edit generated `guide.html`. No third-party scripts, fonts, trackers, or runtime network calls are used. Both guides remain readable from the full 18-file materials ZIP.
+`guide.html` is generated from `index.html` at build time, not fetched at runtime. All lesson text, SQL, prompts, links, and logos stay synchronized; only headings and presentation change. Optional extensions follow core wrap-up. Edit the layout in `tools/guide-template.html`, `assets/guide.css`, and `assets/guide.js`; do not hand-edit generated `guide.html`. No third-party scripts, fonts, trackers, or runtime network calls are used. Both guides remain readable from the full 18-file materials ZIP.
 
 The alternate supports native section links, keyboard focus, a compact mobile contents menu, clipboard-failure selection, and reduced motion. With JavaScript disabled, all instructions and navigation remain visible; copy text manually. Check both editions before publishing. Building locally does not commit, push, or change the live site.
 
 ### Content maintenance
 
 - Edit the guide in `index.html`. Keep its SQL Basics examples consistent with `explore.sql`, notebook directions consistent with `time_travel.ipynb`, and Python examples consistent with `streamlit/streamlit_app.py`.
-- Only run `python3 data/generate_data.py` when intentionally regenerating the source CSVs.
-- After changing guide files, app code, or data, rerun `build_materials.py` and `verify_materials.py`. The deployment workflow does **not** rebuild the ZIPs for you.
+- Only run `python3 tools/generate_data.py` when intentionally regenerating the source CSVs.
+- After changing guide files, app code, or data, rerun `tools/build_materials.py` and `tools/verify_materials.py`. The deployment workflow does **not** rebuild the ZIPs for you.
 - Commit only intended source files and regenerated artifacts. Push to `main` to deploy through GitHub Actions, then verify the live site.
 - Keep credentials, personal account data, and local tooling state out of this public repository.
 

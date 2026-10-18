@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from zipfile import ZipFile
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
 class LabParser(HTMLParser):
@@ -162,7 +162,7 @@ def check_notebook():
 def check_alternate(canonical, source):
     from build_guide import GuideSource, render_guide
     html = (ROOT / 'guide.html').read_text()
-    assert html == render_guide(source), 'Stale alternate guide; run build_materials.py'
+    assert html == render_guide(source), 'Stale alternate guide; run tools/build_materials.py'
     alternate = LabParser()
     alternate.feed(html)
     expected_order = sorted(canonical.sections, key=lambda section: section.get('data-optional') == 'true')
@@ -292,7 +292,7 @@ def main():
             assert link[1:] in parser.ids, link
         elif link and not link.startswith(('https://', 'http://')):
             assert (ROOT / link).exists(), link
-    for source in ['build_materials.py', 'build_guide.py', 'test_build_guide.py', 'data/generate_data.py', 'streamlit/streamlit_app.py']:
+    for source in ['tools/build_materials.py', 'tools/build_guide.py', 'tools/test_build_guide.py', 'tools/generate_data.py', 'streamlit/streamlit_app.py']:
         ast.parse((ROOT / source).read_text())
     base_app = next(block for block in parser.blocks if block.startswith('import streamlit'))
     notes_app = next(block for block in parser.blocks if block.startswith('st.subheader("Search clinical notes")'))
