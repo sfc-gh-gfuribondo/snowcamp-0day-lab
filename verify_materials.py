@@ -175,7 +175,7 @@ def check_alternate(canonical, source):
         original = next(item for item in canonical.sections if item['id'] == identifier)
         for key in ('data-title', 'data-mins', 'data-optional'):
             assert section.get(key) == original.get(key), (identifier, key)
-        assert section['practice'] == section['practice_headings'] == section['practice_icons'] == 1
+        assert section['practice'] == section['practice_headings'] == section['practice_icons'] == (0 if section['id'] == 'overview' else 1)
         assert alternate.section_blocks[identifier] == canonical.section_blocks[identifier], f'Changed code/prompt: {identifier}'
         assert alternate.section_text[identifier] == canonical.section_text[identifier], f'Changed lesson text: {identifier}'
         assert alternate.section_links[identifier] == canonical.section_links[identifier], f'Changed lesson links: {identifier}'
@@ -241,7 +241,7 @@ def main():
     assert len(parser.ids) == len(set(parser.ids)), 'Duplicate HTML ids'
     assert len(parser.sections) == 10
     assert 'concepts' not in parser.ids and 'Core Concepts' not in html
-    assert all(section['practice'] == section['practice_headings'] == section['practice_icons'] == 1
+    assert all(section['practice'] == section['practice_headings'] == section['practice_icons'] == (0 if section['id'] == 'overview' else 1)
                for section in parser.sections)
     assert sum(int(section['data-mins']) for section in parser.sections
                if section.get('data-optional') != 'true') == 82

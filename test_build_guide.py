@@ -21,7 +21,7 @@ class GuideTests(unittest.TestCase):
         output = render_guide(self.source)
         self.assertIn('WHERE AGE_AT_VISIT &gt;= 65', output)
         self.assertIn('viewBox="0 0 72 80"', output)
-        self.assertEqual(output.count('class="coco-icon"'), 12)
+        self.assertEqual(output.count('class="coco-icon"'), 11)
         self.assertNotIn('{{MODULES}}', output)
 
     def test_module_order_and_heading_hierarchy(self):
@@ -33,7 +33,18 @@ class GuideTests(unittest.TestCase):
         ])
         self.assertEqual(parsed.headings.count(1), 1)
         self.assertEqual(parsed.headings.count(2), 10)
-        self.assertTrue(all(section['practice_icons'] == 1 for section in parsed.sections))
+        self.assertTrue(all(section['practice_icons'] == (0 if section['id'] == 'overview' else 1)
+                            for section in parsed.sections))
+
+    def test_practice_removed_only_from_overview(self):
+        for source in (self.source, render_guide(self.source)):
+            parsed = LabParser()
+            parsed.feed(source)
+            self.assertEqual(sum(section['practice'] for section in parsed.sections), 9)
+            for section in parsed.sections:
+                expected = 0 if section['id'] == 'overview' else 1
+                for key in ('practice', 'practice_headings', 'practice_icons'):
+                    self.assertEqual(section[key], expected, section['id'])
 
     def test_void_and_self_closing_elements(self):
         parsed = GuideSource()

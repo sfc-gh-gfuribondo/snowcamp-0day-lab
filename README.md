@@ -45,7 +45,7 @@ If Git setup is blocked, ask the facilitator and use the [full materials bundle]
 
 Optional extensions follow the core wrap-up: **SQL Challenges** (8 minutes) and **Roles and Access** (10 minutes).
 
-Every module includes an always-visible **Try it with CoCo** practice section with a CoCo mascot heading, copyable prompts, and a success check. These activities are additional practice, outside the 82-minute core timing.
+Every module except Lab Overview includes an always-visible **Try it with CoCo** practice section with a CoCo mascot heading, copyable prompts, and a success check. These activities are additional practice, outside the 82-minute core timing.
 The Meet CoCo practice works before data loading: map the workspace, explain setup without running it, or solve a three-visit healthcare puzzle using inline values.
 
 **For a 90-minute session:** follow the core modules through Wrap-Up, including the Meet CoCo introduction. Save extra CoCo practice, SQL Challenges, Roles and Access, the bonus clone, and app deployment for later. Defer the Query Profile tour if behind. Preserve the row-count checks, creation of `DAY0_LAB.HEALTHCARE.ENCOUNTER_SUMMARY`, table restoration, app preview, and compute suspension. Completing all optional activities needs additional time beyond the recommended beginner session.
@@ -178,6 +178,6 @@ The alternate supports native section links, keyboard focus, a compact mobile co
 
 ## Validation scope
 
-Local checks cover parity between both guides (all modules, text, code, prompts, links, CoCo logos, and heading hierarchy), generator regression tests, module timing, one CoCo practice panel per module, immediate Meet CoCo prompts, local links, Python syntax, parity between embedded and downloadable setup/exploration SQL and app code, notebook structure and recovery-cell order, compute-pool configuration and cleanup instructions, CSV relationships, recovery values, and ZIP contents. Browser checks have covered section navigation and narrow-width overflow. Selected earlier SQL examples were exercised in a demo account.
+Local checks cover parity between both guides (all modules, text, code, prompts, links, CoCo logos, and heading hierarchy), generator regression tests, module timing, nine CoCo practice panels (one per module except Lab Overview), immediate Meet CoCo prompts, local links, Python syntax, parity between embedded and downloadable setup/exploration SQL and app code, notebook structure and recovery-cell order, compute-pool configuration and cleanup instructions, CSV relationships, recovery values, and ZIP contents. Browser checks have covered section navigation and narrow-width overflow. Selected earlier SQL examples were exercised in a demo account.
 
 These checks do **not** establish that the complete revised lab has passed a participant-style Snowsight walkthrough. The new notebook and compute-pool/default-warehouse SQL have not been executed against Snowflake. CoCo workspace-CSV ingestion, notebook SQL session continuity, expected-error recovery, pool provisioning, workspace preview, deployed Streamlit behavior, new-session/default-role consistency, and recovery transaction failure behavior still require verification in an authorized demo account. No new trial account is required for that verification.
