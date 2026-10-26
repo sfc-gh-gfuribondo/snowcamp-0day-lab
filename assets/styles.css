@@ -141,3 +141,11 @@ details summary {
   nav.steps.open { display: block; }
   .topbar .meta { display: none; }
 }
+
+/* Screenshots and GIFs from facilitator walkthroughs */
+figure.shot { margin: 14px 0 18px; }
+figure.shot img { display: block; max-width: min(100%, 760px); height: auto; border: 1px solid #d5dde5; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+figure.shot figcaption { font-size: .85em; color: #5b6b7a; margin-top: 6px; }
+.code-caption { margin-bottom: 6px; }
+mark { background: #fff2a8; padding: 0 3px; border-radius: 3px; }
+kbd { font-family: inherit; font-size: .85em; border: 1px solid #c5ced6; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #f6f8fa; }

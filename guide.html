@@ -174,7 +174,7 @@
     Completing every optional activity requires additional time.</div>
   <div class="tip"><strong>If your session is 90 minutes</strong>Follow the core modules through Wrap-Up. Keep the Meet CoCo introduction, but save the extra <em>Try it with CoCo</em> sections, SQL Challenges, Roles and Access, the bonus clone, and app deployment for later. If behind, defer the Query Profile tour. Do not skip row-count checks, creating the app's view, restoring the changed/dropped tables, or suspending compute at the end.</div>
   <div class="why"><strong>Your personal trial account</strong>A personal Snowflake trial account will be provided to each participant.
-    It remains active for <strong>three days after the lab</strong>, so you can revisit the exercises and try the optional activities.
+    It remains active for <strong>30 days</strong>, so you can revisit the exercises and try the optional activities.
     Use the access details supplied by the facilitator; there is no need to sign up for another account.</div>
   <h3>Before you start</h3>
   <ul>
@@ -194,7 +194,7 @@
 
   <h3>1. Sign in to your provided personal trial account</h3>
   <ol>
-    <li>Open the personal trial account URL supplied by your facilitator and follow the supplied sign-in instructions. This is your own lab account, available during the workshop and for <strong>three days afterward</strong>. Do not use a work or production account, and do not create another trial.</li>
+    <li>Open the personal trial account URL supplied by your facilitator and follow the supplied sign-in instructions. This is your own lab account, active for <strong>30 days</strong>. Do not use a work or production account, and do not create another trial.</li>
     <li>Confirm the organization/account name in the account menu. If you see production data or do not recognize the account, stop and ask your facilitator.</li>
     <li>Bookmark the URL. Keep this guide and Snowsight in separate browser tabs so you can switch between instructions and your work.</li>
     <li><strong>Set your role once:</strong> open your user menu (your name, usually lower left), choose <strong>Switch role → ACCOUNTADMIN</strong>, and leave it selected for the entire lab, including optional exercises. If it is unavailable, stop and ask your facilitator.</li>
@@ -233,8 +233,9 @@
   <p>First allow this lab account to read the public repository. This one-time bootstrap must happen <strong>before</strong> creating the Git workspace.</p>
   <ol>
     <li>In <strong>Projects → Workspaces → My Workspace</strong>, use <strong>+ Add new → SQL File</strong> to create <code>git_bootstrap.sql</code>.</li>
-    <li>In your provided lab account only, paste the following SQL and run the entire block. If <code>ACCOUNTADMIN</code> is unavailable, ask your facilitator to create the integration; do not request admin access to a production account.</li>
+    <li>In your provided lab account only, paste the following SQL and run the entire block: select the <strong>down arrow next to the blue Run (▶) button</strong>, then choose <strong>Run all</strong> (shortcut: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>, or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd> on Mac). The blue button by itself runs only the statement under your cursor. If <code>ACCOUNTADMIN</code> is unavailable, ask your facilitator to create the integration; do not request admin access to a production account.</li>
   </ol>
+  <figure class="shot"><img src="assets/img/run_all.png" alt="The down arrow next to the blue Run button opens a menu with Run all, shortcut Ctrl+Shift+Enter" loading="lazy" /><figcaption>Use the arrow beside Run, then Run all.</figcaption></figure>
   <div class="code"><pre>USE ROLE ACCOUNTADMIN;
 
 CREATE API INTEGRATION IF NOT EXISTS SNOWCAMP_GIT_INTEGRATION
@@ -245,12 +246,16 @@ CREATE API INTEGRATION IF NOT EXISTS SNOWCAMP_GIT_INTEGRATION
   ENABLED = TRUE;</pre></div>
   <ol start="3">
     <li>The Snowsight user-menu role should still be <code>ACCOUNTADMIN</code>, selected at sign-in. That role controls which integrations the creation dialog can see. The bootstrap sets the SQL session to the same role. Each lab SQL file also starts with <code>USE ROLE ACCOUNTADMIN;</code>, because a workspace file's role picker can default to a different role; that line keeps the same role rather than switching.</li>
-    <li>Open the workspace selector/header and choose <strong>Git workspace</strong>. The <strong>Create workspace from Git repository</strong> dialog opens. Do not choose <em>Shared workspace</em>.</li>
+    <li>In the Workspaces pane, select the <strong>+</strong> at the top (next to <em>Databases</em>), then choose <strong>Git workspace</strong>. The <strong>Create workspace from Git repository</strong> dialog opens. Do not choose <em>Shared workspace</em>.
+      <figure class="shot"><img src="assets/img/git_workspace_menu.png" alt="The plus button in the Workspaces pane opens Create new with Private, Shared, and Git workspace options" loading="lazy" /><figcaption>+ → Git workspace.</figcaption></figure></li>
     <li>Paste the repository URL below. The name auto-fills as <code>snowcamp-0day-lab</code>; <strong>change Workspace name to <code>snowcamp</code></strong> before continuing. Select <strong>API Integration</strong> <code>SNOWCAMP_GIT_INTEGRATION</code>, choose <strong>Public repository</strong> authentication, then select <strong>Create</strong>.</li>
   </ol>
   <div class="code"><pre>https://github.com/sfc-gh-gfuribondo/snowcamp-0day-lab.git</pre></div>
+  <figure class="shot"><img src="assets/img/git_dialog.png" alt="Create workspace from Git repository dialog: repository URL pasted, name changed to snowcamp, SNOWCAMP_GIT_INTEGRATION selected, Public repository chosen, then Create" loading="lazy" /><figcaption>What you should see before selecting Create.</figcaption></figure>
   <ol start="6">
-    <li>Confirm <strong>snowcamp</strong> is selected and the branch is <code>main</code>. Expand <code>data</code> to find <code>setup.sql</code> and <code>load_data.sql</code>; expand <code>streamlit</code> to find <code>streamlit_app.py</code>.</li>
+    <li>Confirm <strong>snowcamp</strong> is selected and the branch is <code>main</code>. The blue note about public authentication is expected.
+      <figure class="shot"><img src="assets/img/git_confirm_branch.png" alt="Workspace selector shows snowcamp, the Changes tab, and branch main" loading="lazy" /><figcaption>Workspace <code>snowcamp</code>, branch <code>main</code>.</figcaption></figure>
+      Select the <strong>Files</strong> tab and expand <code>data</code> to find <code>setup.sql</code> and <code>load_data.sql</code>; expand <code>streamlit</code> to find <code>streamlit_app.py</code>.</li>
     <li>Find <code>explore.sql</code> and <code>time_travel.ipynb</code> at the workspace root. They already contain the SQL Basics and Time Travel exercises; do not create blank replacements. Open <code>explore.sql</code> to preview its numbered sections, but wait until after loading data to run them. Each file has its own role picker; if a file shows a different role such as <code>SYSADMIN</code>, the file's first <code>USE ROLE ACCOUNTADMIN;</code> line corrects it when run.</li>
   </ol>
   <div class="tip"><strong>No GitHub sign-in required</strong>The public-repository connection brings code into your private workspace; it cannot push your edits back to the lab repository. You do not need to commit or push during the lab. Download your edited files before your trial expires.</div>
@@ -264,6 +269,7 @@ CREATE API INTEGRATION IF NOT EXISTS SNOWCAMP_GIT_INTEGRATION
   <p>Reference: <a href="https://docs.snowflake.com/en/user-guide/ui-snowsight/workspaces-git">Git-connected Workspaces guide</a>.</p>
   <div class="coco-practice">
     <h3 class="coco-heading"><svg class="coco-icon" viewBox="0 0 72 80" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path fill="#58B2E2" d="M22 8h35v14h7v14h7v14h-7v14H15V50H8V36h7V22h7Z"/><path fill="#FBF6E9" d="M29 36h21v20H29Z"/><path fill="#37364A" d="M29 16h7v6h-7Zm14 0h7v6h-7Z"/><path fill="#E09146" d="M36 22h7v14h-7ZM22 50h7v22H18v-7h4Zm28 0h7v15h4v7H50Z"/></svg><span>Try it with CoCo</span></h3>
+    <p><strong>Open CoCo</strong> from the CoCo icon in the bottom-right corner of Snowsight. The next module covers CoCo in more detail; copy the prompt below with the copy button and paste it into the chat.</p>
     <div class="code"><pre>I created a private Git-connected workspace called snowcamp. Explain the difference between its code files and objects in a database schema. Explain why a CSV visible in the Git workspace is not automatically loaded. Describe where setup.sql, an uploaded CSV, and the resulting table belong. Do not create or change anything.</pre></div>
     <p><strong>Success check:</strong>Point to your workspace file list, then locate Database Explorer without confusing the two.</p>
   </div>
@@ -312,12 +318,13 @@ CREATE API INTEGRATION IF NOT EXISTS SNOWCAMP_GIT_INTEGRATION
 
   <div class="tip"><strong>Good to know</strong>
     CoCo can execute multi-step tasks, not just suggest SQL. It starts with your default role, which the facilitator should configure as <code>ACCOUNTADMIN</code> in this workshop account. The user menu, SQL files, and CoCo have separate contexts; setting one is not a global role change. Lab SQL files fix their own role with a first <code>USE ROLE ACCOUNTADMIN;</code> line, so a file showing <code>SYSADMIN</code> is expected. If the user menu or CoCo shows a different role, stop and ask the facilitator to correct the initial setup rather than switching roles during the exercises.
-    For this introduction, choose <strong>+ → Restrict this chat → Read-only</strong> and ask for explanations or draft SQL.
+    For this introduction, keep the chat read-only (steps below) and ask for explanations or draft SQL.
     Review generated queries and suggested edits; AI output can be incorrect.</div>
 
   <div class="coco-practice">
     <h3 class="coco-heading"><svg class="coco-icon" viewBox="0 0 72 80" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path fill="#58B2E2" d="M22 8h35v14h7v14h7v14h-7v14H15V50H8V36h7V22h7Z"/><path fill="#FBF6E9" d="M29 36h21v20H29Z"/><path fill="#37364A" d="M29 16h7v6h-7Zm14 0h7v6h-7Z"/><path fill="#E09146" d="M36 22h7v14h-7ZM22 50h7v22H18v-7h4Zm28 0h7v15h4v7H50Z"/></svg><span>Try it with CoCo</span></h3>
-    <p><strong>Try one now; no loaded tables required.</strong>Keep the chat read-only. Open the named file when a prompt asks about it. If CoCo cannot see it, attach the file or select its text as context rather than accepting a guessed answer.</p>
+    <p><strong>Try one now; no loaded tables required.</strong>First make this chat read-only: in the CoCo panel select <strong>+</strong>, then <strong>Restrict this chat → Read-only</strong>. Open the named file when a prompt asks about it. If CoCo cannot see it, attach the file or select its text as context rather than accepting a guessed answer.</p>
+    <figure class="shot"><img src="assets/img/restricted_coco.gif" alt="Animation: in the CoCo panel, select plus, Restrict this chat, then Read-only" loading="lazy" /><figcaption>+ → Restrict this chat → Read-only.</figcaption></figure>
     <h4>1. Get a map of your new workspace</h4>
     <div class="code"><pre>I just connected the snowcamp lab repository. Inspect its file list, without running code or changing files. Give me a five-step route from setup to a working app, naming the files I will open. Explain why seeing patients.csv in this workspace does not mean PATIENTS is loaded. If you cannot see the files, tell me what context to attach. Keep it under 150 words.</pre></div>
     <p><strong>Success check:</strong>Find the named files in your workspace and explain the separate stage-upload step.</p>
@@ -339,10 +346,12 @@ CREATE API INTEGRATION IF NOT EXISTS SNOWCAMP_GIT_INTEGRATION
     <li>Return to <strong>Projects → Workspaces → snowcamp</strong>. If missing, complete <a href="#tour">the required workspace creation step</a> first.</li>
     <li>Open <code>data/setup.sql</code> in your Git-connected workspace. The file's role picker may show <code>SYSADMIN</code>; that is fine because the script starts with <code>USE ROLE ACCOUNTADMIN;</code>.</li>
     <li>Use the dropdown next to <strong>Run → Run all</strong>. The script creates lab infrastructure, sets the account's default Streamlit compute pool to <code>LAB_STREAMLIT_POOL</code>, and sets your user's default warehouse to <code>LAB_WH</code>. It also pre-selects a 15-minute idle timeout for new notebook services. It does not load data or erase existing rows. The same code is shown below.</li>
-    <li>After it finishes, check the SQL toolbar: <code>ACCOUNTADMIN · LAB_WH · DAY0_LAB · HEALTHCARE</code>. Inspect the compute-pool result for <code>LAB_STREAMLIT_POOL</code> and the parameter result for the same default pool. The last result should list three tables.</li>
+    <li>After it finishes, check the SQL context bar, the row of selectors above the editor, which should read <code>ACCOUNTADMIN · LAB_WH · DAY0_LAB · HEALTHCARE</code>. Inspect the compute-pool result for <code>LAB_STREAMLIT_POOL</code> and the parameter result for the same default pool. The last result should list three tables.
+      <figure class="shot"><img src="assets/img/sql_bar_check.gif" alt="Animation: checking the role, warehouse, database and schema selectors above the SQL editor" loading="lazy" /><figcaption>Where to check role, warehouse, database and schema.</figcaption></figure></li>
   </ol>
   <div class="tip"><strong>Workshop account only</strong>This setup changes an account-wide Streamlit default and your user's default warehouse. Run it only in your provided personal lab account. Rerunning reapplies those defaults; existing objects are not replaced. If any statement fails, stop and ask the facilitator rather than changing roles or bypassing account restrictions.</div>
 
+  <p class="code-caption"><strong>For reference: contents of <code>data/setup.sql</code>.</strong> This is the same code you just ran with Run all; you do not need to run it again.</p>
   <div class="code"><pre>-- Fix this file's role (its picker can default to SYSADMIN)
 USE ROLE ACCOUNTADMIN;
 
@@ -414,6 +423,9 @@ SHOW TABLES IN SCHEMA DAY0_LAB.HEALTHCARE;</pre></div>
     <li>Select all three downloaded files: <code>patients.csv</code>, <code>encounters.csv</code>, and <code>clinical_notes.csv</code>. Keep the filenames unchanged.</li>
     <li>Confirm the dialog targets <code>DAY0_LAB.HEALTHCARE.LAB_DATA</code>. Leave the optional path blank so files land at the stage root.</li>
     <li>Select <strong>Upload</strong> and wait for completion. This stores files; it does not load table rows yet.</li>
+  </ol>
+  <figure class="shot"><img src="assets/img/upload_data_to_stage.gif" alt="Animation: opening the LAB_DATA stage in Database Explorer and uploading the three CSV files" loading="lazy" /><figcaption>Uploading the three CSVs to the LAB_DATA stage.</figcaption></figure>
+  <ol start="5">
     <li>Return to <strong>snowcamp</strong> and open <code>data/load_data.sql</code>. Run the context statements and <code>LIST</code> first. Expect exactly the three CSV filenames.</li>
   </ol>
   <p>Alternative: <strong>Ingestion → Add Data → Load files into a Stage</strong>, if that page loads in your account.
@@ -455,7 +467,7 @@ UNION ALL SELECT 'CLINICAL_NOTES', COUNT(*) FROM CLINICAL_NOTES;</pre></div>
     <p><strong>Additional practice, after the three core tables are loaded.</strong>Open <code>data/payer_budget.csv</code> in your <code>snowcamp</code> workspace. It contains 12 fictional budget records: four months and three plan types. These illustrative amounts are not healthcare benchmarks and are not tied to the encounter dataset.</p>
     <p>If the file is missing, <a href="data/payer_budget.csv" download>download payer_budget.csv</a> and upload it to your workspace. It is also in the full materials bundle, but deliberately not in the three-CSV data ZIP. Use its actual workspace path in the prompt if uploaded at the root.</p>
     <ol>
-      <li>Start a <strong>new CoCo chat</strong> in this workspace. The earlier read-only chat cannot perform this load, and its restriction cannot be relaxed within that chat. Keep <code>ACCOUNTADMIN</code> selected in your provided workshop account; retain tool approval prompts rather than bypassing them.</li>
+      <li><mark><strong>Start a new CoCo chat.</strong></mark> Start a new chat from the CoCo panel, and do not restrict it. Your earlier chat is read-only, so it cannot load data, and that restriction cannot be removed within the same chat. Keep <code>ACCOUNTADMIN</code> selected in your provided workshop account; retain tool approval prompts rather than bypassing them.</li>
       <li>Send the prompt below. Review the proposed columns, source file, destination, and loading method before approving any writes. If CoCo cannot read the workspace CSV or load it with the available tools, stop and ask the facilitator; do not invent rows or add credentials.</li>
       <li>After reviewing the plan, reply: <em>Proceed with the reviewed plan in this workshop account.</em> Approve only the explained actions. If the target table already exists, stop and review it with the facilitator instead of replacing it or loading again.</li>
     </ol>
@@ -598,7 +610,8 @@ SELECT * FROM ENCOUNTER_SUMMARY LIMIT 10;</pre></div>
   <ol>
     <li>Open <strong>Projects → Workspaces → snowcamp</strong>. Leave <code>ACCOUNTADMIN</code> selected for the entire exercise.</li>
     <li>Select <strong>+ Add new → Streamlit App</strong> and enter folder name <code>encounter_explorer</code> when prompted. Snowflake creates the app folder with <code>streamlit_app.py</code>, <code>pyproject.toml</code>, <code>snowflake.yml</code>, and <code>.streamlit/config.toml</code>. Use the newly created folder for your app, not the repository's reference <code>streamlit</code> folder.</li>
-    <li>Open the generated <code>streamlit_app.py</code>. Open the app's settings from the gear/settings control in the app's project pane and verify the query warehouse is <code>LAB_WH</code> (select it if not). The settings show <strong>Targets</strong> and <strong>Network</strong> tabs; an error dot on the auto-created deploy target is expected before deployment and can be ignored. Setup configured <code>LAB_STREAMLIT_POOL</code> as the account's default compute pool. The app runs on a <strong>container runtime</strong>; the warehouse runs its SQL queries.</li>
+    <li>Open the generated <code>streamlit_app.py</code>. Open the app's settings from the gear/settings control in the app's project pane and verify the query warehouse is <code>LAB_WH</code> (select it if not). The settings show <strong>Targets</strong> and <strong>Network</strong> tabs; an error dot on the auto-created deploy target is expected before deployment and can be ignored. Setup configured <code>LAB_STREAMLIT_POOL</code> as the account's default compute pool. Select <strong>Save settings</strong> if you changed anything. The app runs on a <strong>container runtime</strong>; the warehouse runs its SQL queries.
+      <figure class="shot"><img src="assets/img/streamlit_app_settings.png" alt="App settings dialog, Targets tab: Preview in workspace with compute pool LAB_STREAMLIT_POOL and query warehouse LAB_WH" loading="lazy" /><figcaption>Compute pool <code>LAB_STREAMLIT_POOL</code>, query warehouse <code>LAB_WH</code>.</figcaption></figure></li>
     <li>Select <strong>Run</strong> to preview the starter app. This is your private development app; no database or schema selection is needed until deployment.</li>
   </ol>
   <div class="tip"><strong>Before this module</strong>Complete setup, including creation of <code>LAB_STREAMLIT_POOL</code>, its default-pool setting, and your <code>LAB_WH</code> default warehouse. The facilitator must verify Streamlit workloads are allowed and the pool can start in the workshop region. If the Streamlit option is missing or the preview cannot start, stop and ask the facilitator; do not switch roles or create extra compute pools to work around it.</div>
@@ -714,13 +727,13 @@ if term:
     </tbody>
   </table></div>
 
-  <h3>Your next three days</h3>
-  <p>Your provided personal trial account stays active for <strong>three days after the lab</strong>. Use that time to revisit
+  <h3>Your next 30 days</h3>
+  <p>Your provided personal trial account stays active for <strong>30 days</strong>. Use that time to revisit
     the <em>Try it with CoCo</em> sections, complete the optional SQL and access exercises, and refine your app.</p>
   <ul>
     <li>Confirm the exact account expiration time with your facilitator.</li>
     <li>Before access expires, download your edited SQL, notebook, and Python files from <code>snowcamp</code>. Include your generated Streamlit app folder and its configuration files, not just the repository's reference Python file. Export notebook results as HTML separately if you want to keep them.</li>
-    <li>Keep <code>snowcamp-data.zip</code> and your downloaded work on your laptop. If you used the full materials fallback, keep that ZIP too. Do not rely on continued access to the account, app, or workspace after the three-day window.</li>
+    <li>Keep <code>snowcamp-data.zip</code> and your downloaded work on your laptop. If you used the full materials fallback, keep that ZIP too. Do not rely on continued access to the account, app, or workspace after the 30-day trial ends.</li>
   </ul>
   <h3>Keep costs low</h3>
   <p>Confirm the Time Travel notebook service is suspended using its <strong>Connected</strong> menu. It may use a different compute pool from Streamlit, and closing its tab is not enough. Its 15-minute idle timeout also suspends it automatically.</p>
@@ -738,7 +751,7 @@ if term:
     <a href="https://sfc-gh-mwalli.github.io/Cortex-AI-Lab/">Value-Based Care Cortex AI Lab</a>.
     Our three small, independently generated teaching tables are not the Synthea dataset used there.</p>
   <ul>
-    <li>Use the provided personal trial account during its three-day post-lab access window if your facilitator confirms it supports the AI course. Confirm AI prerequisites before starting; do not create another trial just to continue.</li>
+    <li>Use the provided personal trial account during its 30-day trial if your facilitator confirms it supports the AI course. Confirm AI prerequisites before starting; do not create another trial just to continue.</li>
     <li>Follow the AI lab's own setup: its workspace is <code>snowday</code>, its working schema is <code>VBC_LAB.CARE_ANALYTICS</code>, and its structured data is in <code>SYNTHEA.SILVER</code>.</li>
     <li>Download that lab's clinical notes and notebook. Do not substitute our CSVs or skip its data setup. It uses additional tables and different fields, such as <code>TOTAL_CLAIM_COST</code> rather than our <code>TOTAL_COST</code>.</li>
     <li>The AI lab includes Marketplace setup. This Day 0 lab does not require Marketplace.</li>

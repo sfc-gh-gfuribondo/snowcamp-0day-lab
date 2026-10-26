@@ -8,7 +8,7 @@ No Marketplace installation or local development tools are required for particip
 
 ## Your lab account
 
-Each participant receives a **personal Snowflake trial account** from the facilitator. It remains active for **three days after the lab** so you can revisit exercises and continue practicing.
+Each participant receives a **personal Snowflake trial account** from the facilitator. It remains active for **30 days** so you can revisit exercises and continue practicing.
 
 - Use the supplied account URL and sign-in instructions. Do not create another trial or use a production account.
 - Select `ACCOUNTADMIN` once at the start and keep it for every module, including optional exercises. This is an isolated-workshop shortcut, not a production practice; use least-privilege roles in production.
@@ -91,7 +91,7 @@ After the session, participants or facilitators can run `data/teardown.sql` in t
 
 Before the session:
 
-- Provide individual trial accounts, access details, and the three-day post-lab expiration information.
+- Provide individual trial accounts, access details, and the 30-day trial expiration information.
 - Verify login and `ACCOUNTADMIN` access for all lab objects and the Streamlit app. Configure the student's default role as `ACCOUNTADMIN` in the isolated workshop account before the session and verify new SQL files and CoCo start with that role. A user-menu selection is not a global role change across existing sessions.
 - Confirm CoCo access and its account prerequisites using the [official CoCo documentation](https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-snowsight). Do not assume every trial is AI-enabled. If unavailable, demonstrate it while participants continue with the supplied code.
 - Verify the `ACCOUNTADMIN` Git bootstrap works and the integration allows `https://github.com` (any GitHub repository, so participants can also connect other public repos). Because setup uses `IF NOT EXISTS`, an integration created earlier with a narrower prefix keeps it; update it with `ALTER API INTEGRATION SNOWCAMP_GIT_INTEGRATION SET API_ALLOWED_PREFIXES = ('https://github.com');` if needed. Subsequent scripts must not change roles.
